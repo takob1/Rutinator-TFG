@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "rutinator-41ab4": {
+      "hosting": {
+        "rutinator": [
+          "rutinator-41ab4"
+        ]
+      }
+    }
+  }
+}

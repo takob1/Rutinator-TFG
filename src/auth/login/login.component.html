@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="display-6 text-center">Inicio de Sesión</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              formControlName="email"
+            />
+            <label for="floatingInput">Correo Electrónico</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+          <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-dark" type="submit">Iniciar Sesion</button>
+          </div>
+        </form>
+        <div class="form-group mt-3 text-center">
+          <p>¿No tiene cuenta? Cree una <a href="">aquí</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

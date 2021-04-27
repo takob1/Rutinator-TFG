@@ -1,25 +1,128 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
       <div class="card-body">
         <h1 class="display-6 text-center">Inicio de Sesión</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-              formControlName="email" />
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              formControlName="email"
+            />
             <label for="floatingInput">Correo Electrónico</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-              formControlName="password" />
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              formControlName="password"
+            />
             <label for="floatingPassword">Contraseña</label>
           </div>
           <div class="d-grid gap-2 mt-3">
             <button class="btn btn-dark" type="submit">Iniciar Sesion</button>
           </div>
+          <div class="formGroup text-center">
+            <span class="or"><span class="orInner">Ó</span></span>
+          </div>
+          <div class="formGroup text-center">
+            <button
+              type="button"
+              class="btn googleBtn"
+              (click)="authSvc.GoogleAuth()"
+            >
+              <i class="fab fa-google-plus-g"></i>
+              Inicie Sesión con Google
+            </button>
+          </div>
         </form>
         <div class="form-group mt-3 text-center">
           <p>¿No tiene cuenta? Cree una <a routerLink="/register">aquí</a></p>
+        </div>
+        <div class="form-group mt-3 text-center">
+          <p><a routerLink="/register">Olvidó su contraseña?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container container-login w-75 mt-5 shadow-lg overflow-hidden">
+  <div class="row">
+    <div
+      class="col col-md-5 col-lg-5 col-xl-6 bg d-none d-lg-block px-0 overflow-auto"
+    >
+      <img
+        src="https://cdn.pixabay.com/photo/2017/04/27/08/29/man-2264825_960_720.jpg"
+        alt="imgLogin"
+        class="login-img w-100 h-100 overflow-hidden"
+      />
+    </div>
+    <div class="col bg-light border-0">
+      <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+      <span id="controlDatos" class="text-danger mb-2"></span>
+      <!-- login -->
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-floating mb-4">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            formControlName="email"
+            required
+            autocomplete="email"
+          />
+          <label for="floatingInput">Correo Electrónico</label>
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            formControlName="password"
+            required
+            autocomplete="current-password"
+          />
+          <label for="floatingPassword">Contraseña</label>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-dark" type="submit">Iniciar Sesion</button>
+        </div>
+        <div class="form-group mt-3 text-center">
+          <p>¿No tiene cuenta? Cree una <a routerLink="/register">aquí</a></p>
+        </div>
+        <div class="form-group mt-3 text-center">
+          <p><a routerLink="/register">Olvidó su contraseña?</a></p>
+        </div>
+      </form>
+
+      <!-- Redes Sociales -->
+
+      <div class="container w-100 my-5">
+        <div class="row text-center no-gutters">
+          <div class="col">Iniciar sesión</div>
+        </div>
+        <div
+          class="row text-center my-3 align-items-center row-cols-1 row-cols-sm-3 row-cols-md-3 d-flex justify-content-center"
+        >
+          <div class="col">
+            <button class="btn" (click)="authSvc.GoogleAuth()">
+              <i class="fab fa-facebook fa-2x"></i>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn" (click)="authSvc.GoogleAuth()">
+              <i class="fab fa-google-plus fa-2x"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

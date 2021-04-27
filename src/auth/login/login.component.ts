@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private authSvc: AuthService) {}
+  constructor(public authSvc: AuthService) {}
 
   ngOnInit(): void {}
 

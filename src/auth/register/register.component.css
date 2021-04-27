@@ -1,0 +1,8 @@
+.container-login {
+  border-radius: 30px;
+}
+
+body {
+  background: #d0d0ce;
+  background: linear-gradient(to right, #ddd3c5, #d0d0ce);
+}

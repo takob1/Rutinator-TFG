@@ -27,10 +27,10 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user') ?? '');
+        //JSON.parse(localStorage.getItem('user') ?? '');
       } else {
         localStorage.setItem('user', '');
-        JSON.parse(localStorage.getItem('user') ?? '');
+        //JSON.parse(localStorage.getItem('user') ?? '');
       }
     });
   }
@@ -43,7 +43,7 @@ export class AuthService {
         this.SetUserData(result.user);
       })
       .catch((error) => {
-        //window.alert(error.message);
+        window.alert(error.message);
       });
   }
 
@@ -115,10 +115,13 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };
+    return userRef.set(userData, {
+      merge: true,
+    });
   }
 
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
+  async SignOut() {
+    await this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });

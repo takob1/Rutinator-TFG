@@ -39,16 +39,12 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
+          <a class="nav-link" (click)="authSvc.SignOut()">
+            <i class="fas fa-sign-out-alt"></i>Log out
+          </a>
         </li>
       </ul>
-      <form class="d-flex">
+      <!-- <form class="d-flex">
         <input
           class="form-control me-2"
           type="search"
@@ -56,6 +52,13 @@
           aria-label="Search"
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+      <form class="d-flex">
+        <div *ngIf="authSvc.userData as user" class="text-white">
+          <span class="ml-2">
+            {{ user.displayName ? user.displayName : "User" }}</span
+          ><i class="far fa-user-circle fa-2x"></i>
+        </div>
       </form>
     </div>
   </div>

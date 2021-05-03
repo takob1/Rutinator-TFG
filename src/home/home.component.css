@@ -1,6 +1,6 @@
-#Usuario{
-    background: #d0d0ce;
-    background: linear-gradient(to right, #ddcfc5, #ecece4);
-    
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+#Usuario {
+  background: #d0d0ce;
+  background: linear-gradient(to right, #ddcfc5, #ecece4);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }

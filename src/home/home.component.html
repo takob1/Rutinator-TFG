@@ -3,14 +3,36 @@
 <div class="contanier-fluid d-flex align-items-center py-5">
   <div id="Usuario" class="container w-75 pl-5 rounded ">
     <div class="row align-items-center" *ngIf="authSvc.userData as user">
-      <div class="col-sm p-3">
-        <img class="img-thumbnail rounded-circle w-50 mx-auto d-block" src="{{
+      <div class="col-md col-md-4 p-3">
+        <img class="img-thumbnail rounded-circle w-75  mx-auto d-block" src="{{
                             user.photoURL ? user.photoURL : '/assets/img_24787.png'
                           }}" alt="{{ user.displayName }}" />
       </div>
       <div class="col-sm p-3 ">
         <h1 class="h2">Perfil de Usuario</h1>
         <div class="media-body">
+
+          <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre" formControlName="name"
+                [class]="isValidField('name')">
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="inputPassword4" placeholder="Apellido"
+                formControlName="surname" [class]="isValidField('surname')">
+            </div>
+            <div class=" col-12">
+              <label for="inputAddress" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputAddress" formControlName="email"
+                [class]="isValidField('email')">
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-danger">Sign in</button>
+            </div>
+          </form>
           <h1>
             Bienvenido:
             <strong>{{
@@ -29,5 +51,10 @@
         </div>
       </div>
     </div>
+    <!-- <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-danger">Sign in</button>
+      </div>
+    </div> -->
   </div>
 </div>

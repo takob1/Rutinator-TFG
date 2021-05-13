@@ -120,27 +120,6 @@ export class AuthService {
       merge: true,
     });
   }
-  UpdateUserData(user: User | any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
-    const extra = {
-      tag: 'braylout',
-      rutinas: {
-        rutina1: {
-          ejercicio1: 1,
-          ejercicio2: 2,
-        },
-        rutina2: {
-          ejercicio1: 1,
-          ejercicio2: 2,
-        },
-      },
-    };
-    return userRef.set(extra, {
-      merge: true,
-    });
-  }
 
   //esto es lo de actualizar usuario
   UpdateUserData(user: User | any) {

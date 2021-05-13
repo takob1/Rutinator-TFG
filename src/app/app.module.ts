@@ -16,12 +16,14 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../auth/services/auth.service';
+import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'perfil', component: PerfilComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
@@ -32,6 +34,7 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,4 +48,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

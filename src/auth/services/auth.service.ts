@@ -105,6 +105,7 @@ export class AuthService {
   }
 
   SetUserData(user: User | any) {
+    console.log(user);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -121,7 +122,7 @@ export class AuthService {
   }
   UpdateUserData(user: User | any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      'users / ${ user.uid }'
+      `users/${user.uid}`
     );
     const extra = {
       tag: 'braylout',

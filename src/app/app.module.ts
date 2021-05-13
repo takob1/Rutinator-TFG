@@ -16,6 +16,7 @@ import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.componen
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
 import { ToastrModule } from 'ngx-toastr';
 
+
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 

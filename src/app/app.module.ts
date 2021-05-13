@@ -16,6 +16,9 @@ import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.componen
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
 import { ToastrModule } from 'ngx-toastr';
 
+import { AuthService } from '../auth/services/auth.service';
+import { PerfilComponent } from 'src/auth/perfil/perfil.component';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -24,6 +27,7 @@ const routes: Routes = [
   { path: 'edit-exercise', component: EditEjercicioComponent },
   { path: 'list-exercise', component: EditEjercicioComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'perfil', component: PerfilComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
@@ -37,6 +41,7 @@ const routes: Routes = [
     AddEjercicioComponent,
     EditEjercicioComponent,
     ListEjercicioComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,4 +57,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

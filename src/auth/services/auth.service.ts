@@ -105,6 +105,7 @@ export class AuthService {
   }
 
   SetUserData(user: User | any) {
+    console.log(user);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -116,6 +117,27 @@ export class AuthService {
       emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {
+      merge: true,
+    });
+  }
+  UpdateUserData(user: User | any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `users/${user.uid}`
+    );
+    const extra = {
+      tag: 'braylout',
+      rutinas: {
+        rutina1: {
+          ejercicio1: 1,
+          ejercicio2: 2,
+        },
+        rutina2: {
+          ejercicio1: 1,
+          ejercicio2: 2,
+        },
+      },
+    };
+    return userRef.set(extra, {
       merge: true,
     });
   }

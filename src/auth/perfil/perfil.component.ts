@@ -4,26 +4,27 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/auth/services/auth.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.css']
 })
-export class HomeComponent implements OnInit {
+export class PerfilComponent implements OnInit {
 
   profileForm !: FormGroup;
-  navigation: NavigationExtras = {
-    state: {
-      value: null
-    }
-  }
 
   private isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  value: any;
 
-
-  constructor(public authSvc: AuthService, private _builder: FormBuilder, private router: Router) { }
+  constructor(public authSvc: AuthService, private _builder: FormBuilder, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.value = navigation?.extras?.state;
+  }
 
   ngOnInit(): void {
     this.initForm();
+
+    this.profileForm.patchValue(this.authSvc.userData);
+
   }
 
   onSubmit(): void {
@@ -41,14 +42,14 @@ export class HomeComponent implements OnInit {
 
   private initForm(): void {
     this.profileForm = this._builder.group({
-      name: ['', [Validators.required]],
+      displayName: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
     })
 
   }
-
-  onEdit(item: any): void {
-    this.router.navigate(['edit']);
+  onGoBack(): void {
+    this.router.navigate(['home']);
   }
+
 }

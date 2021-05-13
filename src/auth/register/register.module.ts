@@ -5,7 +5,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  //declarations: [RegisterComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,

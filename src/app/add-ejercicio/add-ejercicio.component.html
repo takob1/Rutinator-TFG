@@ -1,0 +1,262 @@
+<app-navegacion></app-navegacion>
+<form
+  [formGroup]="ejercicioForm"
+  (ngSubmit)="submitEjercicioData()"
+  novalidate
+  enctype="multipart/form-data"
+>
+  <div class="container mt-3">
+    <div class="row my-3">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre del ejercicio</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          id="name"
+          placeholder="Dominada"
+          required
+          [class]="isValidField('name')"
+        />
+        <div class="invalid-feedback">
+          <span *ngIf="ejercicioForm.get('name')?.errors?.required">
+            El campo no puede estar vacio
+          </span>
+          <span *ngIf="ejercicioForm.get('name')?.errors?.minlength">
+            Introduzca un Nombre con mas de dos letras
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label"
+          >Descripción del ejercicio</label
+        >
+        <textarea
+          class="form-control"
+          id="description"
+          rows="3"
+          formControlName="description"
+          [class]="isValidField('description')"
+        ></textarea>
+      </div>
+
+      <div>
+        <label class="form-label" for="image">Seleccione una imagen</label>
+      </div>
+      <div class="input-group mb-3">
+        <br />
+        <input
+          type="file"
+          formControlName="image"
+          class="form-control"
+          id="image"
+          accept=".png,.jpg"
+          [class]="isValidField('image')"
+          #ejFoto
+          (change)="onFileSelected($event)"
+          autocomplete="off"
+        />
+        <div class="invalid-feedback">
+          <span *ngIf="ejercicioForm.get('image')?.errors?.required">
+            La imagen no puede estar vacía
+          </span>
+        </div>
+        <label class="input-group-text bg-danger text-light" for="image"
+          >Upload</label
+        >
+      </div>
+
+      <div>
+        <label class="form-label" for="image"
+          >Tiempo por Repetición (Segundos)</label
+        >
+      </div>
+      <div class="input-group mb-3">
+        <br />
+        <input
+          type="Number"
+          class="form-control"
+          id="tiempo"
+          min="0"
+          formControlName="time_rep"
+          [class]="isValidField('time_rep')"
+        />
+        <label class="input-group-text bg-danger text-light" for="tiempo"
+          >Tiempo/Rep</label
+        >
+      </div>
+    </div>
+
+    <div class="row my-3 container-fluid">
+      <div>
+        <label class="form-label" for="inputGroupFile02"
+          >Seleccione las zonas que ejercita
+        </label>
+      </div>
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Basic checkbox toggle button group"
+        id="area"
+      >
+        <div class="d-flex flex-stretch" *ngFor="let zona of zonas; index as i">
+          <input
+            type="checkbox"
+            [name]="zona"
+            class="btn-check"
+            [class]="isValidField('name')"
+            [id]="zona"
+            [value]="zona"
+            (change)="onCheck(zona)"
+            #inputs
+          />
+          <label class="btn btn-outline-danger" for="{{ zona }}">{{
+            zona
+          }}</label>
+          <!-- <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck1"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Hombro"
+          />
+          <label class="btn btn-outline-danger" for="btncheck1">Hombro</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck2"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Espalda"
+          />
+          <label class="btn btn-outline-danger" for="btncheck2">Espalda</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck3"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Pecho"
+          />
+          <label class="btn btn-outline-danger" for="btncheck3">Pecho</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck4"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Lumbar"
+          />
+          <label class="btn btn-outline-danger" for="btncheck4">Lumbar</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck5"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Abdomen"
+          />
+          <label class="btn btn-outline-danger" for="btncheck5">Abdomen</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck6"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Dorsal"
+          />
+          <label class="btn btn-outline-danger" for="btncheck6">Dorsal</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck7"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Cuadriceps"
+          />
+          <label class="btn btn-outline-danger" for="btncheck7"
+            >Cuadriceps</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck8"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Biceps"
+          />
+          <label class="btn btn-outline-danger" for="btncheck8">Biceps</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck9"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Triceps"
+          />
+          <label class="btn btn-outline-danger" for="btncheck9">Triceps</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck10"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Antebrazo"
+          />
+          <label class="btn btn-outline-danger" for="btncheck10"
+            >Antebrazo</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck11"
+            autocomplete="off"
+            [class]="isValidField('name')"
+            value="Gemelo"
+          />
+          <label class="btn btn-outline-danger" for="btncheck11">Gemelo</label> -->
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="
+        mt-5
+        form-group
+        text-center
+        d-flex
+        align-items-center
+        justify-content-center
+        gap-5
+      "
+    >
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="ResetForm()"
+      >
+        Reset
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-danger"
+        [disabled]="!ejercicioForm.valid"
+      >
+        Añadir Ejercicio
+      </button>
+    </div>
+  </div>
+</form>

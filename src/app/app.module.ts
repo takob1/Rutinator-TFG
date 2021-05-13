@@ -1,26 +1,28 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { RouterModule, Routes } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavegacionComponent } from '../compartido/navegacion/navegacion.component';
-import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../auth/login/login.component';
-import { RegisterComponent } from '../auth/register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
-import { AuthService } from '../auth/services/auth.service';
+import { LoginComponent } from '../auth/login/login.component';
+import { RegisterComponent } from '../auth/register/register.component';
+import { NavegacionComponent } from '../compartido/navegacion/navegacion.component';
+import { HomeComponent } from '../home/home.component';
+import { AppComponent } from './app.component';
+import { AddEjercicioComponent } from './add-ejercicio/add-ejercicio.component';
+import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
+import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'create-exercise', component: AddEjercicioComponent },
+  { path: 'edit-exercise', component: EditEjercicioComponent },
+  { path: 'list-exercise', component: EditEjercicioComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
@@ -32,6 +34,9 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    AddEjercicioComponent,
+    EditEjercicioComponent,
+    ListEjercicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,8 @@ const routes: Routes = [
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

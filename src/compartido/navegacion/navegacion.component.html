@@ -1,22 +1,59 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-danger navbar-rutinator">
   <div class="container-fluid">
-    <a class="navbar-brand btn btn-outline-light brand-rutinator" href="#">RUTINATOR</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand btn btn-outline-light brand-rutinator" href="#"
+      >RUTINATOR</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse justify-content-md-center"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Rutinas</a>
+          <a class="nav-link" (click)="authSvc.UpdateUserData(authSvc.userData)"
+            >Rutinas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/create-exercise"
+            routerLinkActive="active"
+            >add-ejercicio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/list-exercise"
+            routerLinkActive="active"
+            >list-ejercicio</a
+          >
         </li>
         <li class="nav-item dropdown">
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-light" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
           </form>
         </li>
         <li class="nav-item">
@@ -34,12 +71,15 @@
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> -->
-
     </div>
     <div class="float-right">
-      <div *ngIf="authSvc.userData as user" class="text-white d-flex align-items-center">
+      <div
+        *ngIf="authSvc.userData as user"
+        class="text-white d-flex align-items-center"
+      >
         <span class="mx-2">
-          {{ user.displayName ? user.displayName : "User" }}</span><i class="far fa-user-circle fa-2x"></i>
+          {{ user.displayName ? user.displayName : "User" }}</span
+        ><i class="far fa-user-circle fa-2x"></i>
       </div>
     </div>
   </div>

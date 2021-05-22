@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create-exercise', component: AddEjercicioComponent },
   { path: 'edit-exercise', component: EditEjercicioComponent },
-  { path: 'list-exercise', component: EditEjercicioComponent },
+  { path: 'list-exercise', component: ListEjercicioComponent },
   { path: 'forgot-password', component: ForgorPasswordComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'perfil', component: PerfilComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

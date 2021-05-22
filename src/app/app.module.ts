@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'create-exercise', component: AddEjercicioComponent },
   { path: 'edit-exercise', component: EditEjercicioComponent },
   { path: 'list-exercise', component: EditEjercicioComponent },
+  { path: 'forgot-password', component: ForgorPasswordComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'perfil', component: PerfilComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },

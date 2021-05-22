@@ -6,16 +6,20 @@ import { AuthService } from 'src/auth/services/auth.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
+  profileForm!: FormGroup;
 
-  profileForm !: FormGroup;
-
-  private isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  private isEmail =
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   value: any;
 
-  constructor(public authSvc: AuthService, private _builder: FormBuilder, private router: Router) {
+  constructor(
+    public authSvc: AuthService,
+    private _builder: FormBuilder,
+    private router: Router
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.value = navigation?.extras?.state;
   }
@@ -24,20 +28,23 @@ export class PerfilComponent implements OnInit {
     this.initForm();
 
     this.profileForm.patchValue(this.authSvc.userData);
-
   }
 
   onSubmit(): void {
     if (this.profileForm.valid) {
       console.log(this.profileForm.value);
     } else {
-      console.log("no valido");
+      console.log('no valido');
     }
   }
 
   isValidField(field: string): string {
     const validatedFiel = this.profileForm.get(field);
-    return (!validatedFiel?.valid && validatedFiel?.touched) ? 'is-invalid' : validatedFiel?.touched ? 'is-valid' : '';
+    return !validatedFiel?.valid && validatedFiel?.touched
+      ? 'is-invalid'
+      : validatedFiel?.touched
+      ? 'is-valid'
+      : '';
   }
 
   private initForm(): void {
@@ -45,11 +52,9 @@ export class PerfilComponent implements OnInit {
       displayName: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
-    })
-
+    });
   }
   onGoBack(): void {
     this.router.navigate(['home']);
   }
-
 }

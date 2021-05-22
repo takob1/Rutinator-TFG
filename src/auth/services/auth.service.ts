@@ -10,18 +10,22 @@ import {
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { error } from 'selenium-webdriver';
+import { ToastrService } from 'ngx-toastr';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  public resetForm!: FormGroup;
   userData: any;
 
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public toastr: ToastrService
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -74,7 +78,8 @@ export class AuthService {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('correo de reseteo de contraseña enviado');
+        //window.alert('correo de reseteo de contraseña enviado');
+        this.toastr.success('Correo enviado correctamente');
       })
       .catch((error) => {
         //window.alert(error);
@@ -142,6 +147,10 @@ export class AuthService {
     return userRef.set(extra, {
       merge: true,
     });
+  }
+
+  getCurrentUser() {
+    return this.afAuth.authState.pipe(first()).toPromise();
   }
 
   async SignOut() {

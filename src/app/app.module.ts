@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
+import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
     EditEjercicioComponent,
     ListEjercicioComponent,
     PerfilComponent,
+    ForgorPasswordComponent,
   ],
   imports: [
     BrowserModule,

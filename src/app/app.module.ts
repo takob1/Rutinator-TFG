@@ -15,11 +15,13 @@ import { AddEjercicioComponent } from './add-ejercicio/add-ejercicio.component';
 import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
 import { ToastrModule } from 'ngx-toastr';
+// import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
 import { MatCardModule } from '@angular/material/card';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -58,6 +60,7 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     MatCardModule,
+    // AngularFirestore,
   ],
   providers: [],
   bootstrap: [AppComponent],

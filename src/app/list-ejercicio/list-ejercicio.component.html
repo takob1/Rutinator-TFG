@@ -1,25 +1,48 @@
 <app-navegacion></app-navegacion>
 
-<p>list-ejercicio works!</p>
-
-<div class="container mb-5" *ngFor="let item of ejercicios$ | async">
+<div class="container mt-5" *ngFor="let item of ejercicios$ | async">
   <mat-card class="example-card mat-elevation-z24">
     <mat-card-header>
+      <div
+        mat-card-avatar
+        [ngStyle]="{
+          'background-image': 'url(' + item.image + ')',
+          'background-size': 'cover'
+        }"
+      ></div>
       <mat-card-title>nombre: {{ item.name }}</mat-card-title>
       <mat-card-subtitle>descripcion: {{ item.description }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <img src="{{ item.image }}" alt="" />
+      <img src="{{ item.image }}" alt="" width="150px" height="200px" />
       <p>imagen: {{ item.image }}</p>
       <p>tiempo: {{ item.time_rep }}</p>
-      <p>zonas: {{ item.work_area }}</p>
+      <mat-chip-list>
+        <mat-label>Zonas:</mat-label>
+        <mat-chip
+          class="bg-danger text-light"
+          *ngFor="let z of item.work_area | keyvalue"
+        >
+          {{ z.value }}
+        </mat-chip>
+      </mat-chip-list>
     </mat-card-content>
-    <mat-card-actions>
-      <button class="btn btn-danger" (click)="edit(item)">EDITAR</button>
-      <button class="btn btn-dark" (click)="delete(item.$id)">BORRAR</button>
-    </mat-card-actions>
+    <button class="btn" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="text-warning" (click)="edit(item)">
+        EDITAR
+      </button>
+      <button mat-menu-item class="text-danger" (click)="delete(item.$id)">
+        BORRAR
+      </button>
+    </mat-menu>
   </mat-card>
 </div>
+<!-- <mat-card-actions>
+
+</mat-card-actions> -->
 
 <!-- <div class="container" *ngFor="let item of fakeData">
   <mat-card class="example-card">

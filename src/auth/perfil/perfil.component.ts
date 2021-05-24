@@ -11,6 +11,7 @@ import { AuthService } from 'src/auth/services/auth.service';
 export class PerfilComponent implements OnInit {
 
   profileForm !: FormGroup;
+  userData: any;
 
   private isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   value: any;
@@ -18,12 +19,14 @@ export class PerfilComponent implements OnInit {
   constructor(public authSvc: AuthService, private _builder: FormBuilder, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.value = navigation?.extras?.state;
+    this.userData = JSON.parse(localStorage.getItem('user')!)
+
   }
 
   ngOnInit(): void {
     this.initForm();
-
-    this.profileForm.patchValue(this.authSvc.userData);
+    console.log(this.userData);
+    this.profileForm.patchValue(this.userData);
 
   }
 

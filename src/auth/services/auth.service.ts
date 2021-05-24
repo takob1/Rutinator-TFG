@@ -82,8 +82,12 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user') ?? '');
-    return user !== null && user.emailVerified !== false ? true : false;
+    try {
+      const user = JSON.parse(localStorage.getItem('user')!);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   GoogleAuth() {
@@ -98,6 +102,7 @@ export class AuthService {
           this.router.navigate(['home']);
         });
         this.SetUserData(result.user);
+        this.UpdateUserData(result.user);
       })
       .catch((error) => {
         //window.alert(error);
@@ -126,6 +131,13 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
+    const data: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
+    };
     const extra = {
       tag: 'braylout',
       rutinas: {
@@ -139,7 +151,7 @@ export class AuthService {
         },
       },
     };
-    return userRef.set(extra, {
+    return userRef.set(data, {
       merge: true,
     });
   }

@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create-exercise', component: AddEjercicioComponent, canActivate: [AuthGuard] },
   { path: 'edit-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
-  { path: 'list-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
+  { path: 'list-exercise', component: ListEjercicioComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgorPasswordComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },

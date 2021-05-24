@@ -19,16 +19,17 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create-exercise', component: AddEjercicioComponent },
-  { path: 'edit-exercise', component: EditEjercicioComponent },
-  { path: 'list-exercise', component: EditEjercicioComponent },
+  { path: 'create-exercise', component: AddEjercicioComponent, canActivate: [AuthGuard] },
+  { path: 'edit-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
+  { path: 'list-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'perfil', component: PerfilComponent },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 

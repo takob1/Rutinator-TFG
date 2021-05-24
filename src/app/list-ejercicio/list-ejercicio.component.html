@@ -13,7 +13,8 @@
       <mat-card-title>nombre: {{ item.name }}</mat-card-title>
       <mat-card-subtitle>descripcion: {{ item.description }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content class="mt-2">
       <img src="{{ item.image }}" alt="" width="150px" height="200px" />
       <p>imagen: {{ item.image }}</p>
       <p>tiempo: {{ item.time_rep }}</p>
@@ -40,6 +41,7 @@
     </mat-menu>
   </mat-card>
 </div>
+
 <!-- <mat-card-actions>
 
 </mat-card-actions> -->

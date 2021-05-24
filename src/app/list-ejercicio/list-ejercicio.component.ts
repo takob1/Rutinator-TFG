@@ -38,6 +38,7 @@ export class ListEjercicioComponent implements OnInit {
   async delete(id: string): Promise<void> {
     try {
       await this.crudApi.deleteEjercicio(id);
+      this.toastr.error('Ejercicio eliminado correctamente');
     } catch (err) {
       console.log(err);
     }

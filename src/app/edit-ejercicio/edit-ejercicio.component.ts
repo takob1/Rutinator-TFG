@@ -162,8 +162,14 @@ export class EditEjercicioComponent implements OnInit {
     //this.ejercicioForm.reset
   }
 
-  delete() {
-    alert('delete');
+  async delete(id: string): Promise<void> {
+    try {
+      await this.crudApi.deleteEjercicio(id);
+      this.toastr.error('Ejercicio eliminado correctamente');
+      this.router.navigate(['list-exercise']);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   getSliderValue(event: Event) {

@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { from } from 'rxjs';
 
 const routes: Routes = [
@@ -70,6 +71,7 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     MatMenuModule,
+    MatDividerModule,
     // AngularFirestore,
   ],
   providers: [],

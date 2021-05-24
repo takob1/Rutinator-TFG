@@ -21,6 +21,13 @@ import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

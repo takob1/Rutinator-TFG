@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ForgorPasswordComponent } from './forgor-password.component';
 
 describe('ForgorPasswordComponent', () => {
@@ -8,9 +8,8 @@ describe('ForgorPasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForgorPasswordComponent ]
-    })
-    .compileComponents();
+      declarations: [ForgorPasswordComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

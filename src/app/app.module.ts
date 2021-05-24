@@ -15,11 +15,12 @@ import { AddEjercicioComponent } from './add-ejercicio/add-ejercicio.component';
 import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
 import { ToastrModule } from 'ngx-toastr';
-
+// import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AuthService } from '../auth/services/auth.service';
 import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'create-exercise', component: AddEjercicioComponent, canActivate: [AuthGuard] },
   { path: 'edit-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
   { path: 'list-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
+  { path: 'forgot-password', component: ForgorPasswordComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
@@ -44,6 +46,7 @@ const routes: Routes = [
     EditEjercicioComponent,
     ListEjercicioComponent,
     PerfilComponent,
+    ForgorPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,14 @@ const routes: Routes = [
     AngularFireAuthModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    MatCardModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    // AngularFirestore,
   ],
   providers: [],
   bootstrap: [AppComponent],

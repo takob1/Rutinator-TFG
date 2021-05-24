@@ -1,0 +1,233 @@
+<app-navegacion></app-navegacion>
+<div class="example-container" style="width: 30%">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    #ejercicioList="cdkDropList"
+    [cdkDropListData]="ej"
+    [cdkDropListConnectedTo]="[rutinaList]"
+    class="example-list"
+    (cdkDropListDropped)="onDropped($event)"
+  >
+    <div class="example-box" *ngFor="let item of ej" cdkDrag>
+      <mat-card class="example-card mat-elevation-z24 container-fluid">
+        <mat-card-header class="d-flex align-items-center">
+          <div
+            class=""
+            mat-card-avatar
+            [ngStyle]="{
+              'background-image': 'url(' + item.image + ')',
+              'background-size': 'cover'
+            }"
+          ></div>
+          <mat-card-title class="">nombre: {{ item.name }}</mat-card-title>
+        </mat-card-header>
+        <div class="row my-3">
+          <mat-divider></mat-divider>
+        </div>
+        <mat-card-content class="container">
+          <div class="row">
+            <div class="col col-3">
+              <img
+                src="{{ item.image }}"
+                alt=""
+                class=""
+                width="150px"
+                height="200px"
+              />
+            </div>
+            <div class="col col-8 my-auto">
+              <p>imagen: {{ item.image }}</p>
+              <p>tiempo: {{ item.time_rep }}</p>
+              <mat-card-subtitle
+                >descripcion: {{ item.description }}</mat-card-subtitle
+              >
+            </div>
+            <div
+              class="
+                mat-menu
+                col col-1
+                btn btn-outline-danger
+                d-flex
+                justify-content-center
+                align-items-center
+                text-white
+              "
+            ></div>
+          </div>
+          <div class="row my-3">
+            <mat-divider></mat-divider>
+          </div>
+          <div class="row">
+            <mat-chip-list class="col-6">
+              <mat-label>Zonas:</mat-label>
+              <mat-chip
+                class="bg-danger text-light"
+                *ngFor="let z of item.work_area | keyvalue"
+              >
+                {{ z.value }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="example-container" style="width: 30%">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #rutinaList="cdkDropList"
+    [cdkDropListData]="ejercicioRutina"
+    [cdkDropListConnectedTo]="[ejercicioList]"
+    class="example-list"
+    (cdkDropListDropped)="onDropped($event)"
+  >
+    <div
+      class="example-box bg-black"
+      *ngFor="let item of ejercicioRutina"
+      cdkDrag
+    >
+      <div class="bg-danger"></div>
+      <mat-card class="example-card mat-elevation-z24 container-fluid">
+        <mat-card-header class="d-flex align-items-center">
+          <div
+            class=""
+            mat-card-avatar
+            [ngStyle]="{
+              'background-image': 'url(' + item.image + ')',
+              'background-size': 'cover'
+            }"
+          ></div>
+          <mat-card-title class="">nombre: {{ item.name }}</mat-card-title>
+        </mat-card-header>
+        <div class="row my-3">
+          <mat-divider></mat-divider>
+        </div>
+        <mat-card-content class="container">
+          <div class="row">
+            <div class="col col-3">
+              <img
+                src="{{ item.image }}"
+                alt=""
+                class=""
+                width="150px"
+                height="200px"
+              />
+            </div>
+            <div class="col col-8 my-auto">
+              <p>imagen: {{ item.image }}</p>
+              <p>tiempo: {{ item.time_rep }}</p>
+              <mat-card-subtitle
+                >descripcion: {{ item.description }}</mat-card-subtitle
+              >
+            </div>
+            <div
+              class="
+                mat-menu
+                col col-1
+                btn btn-outline-danger
+                d-flex
+                justify-content-center
+                align-items-center
+                text-white
+              "
+            ></div>
+          </div>
+          <div class="row my-3">
+            <mat-divider></mat-divider>
+          </div>
+          <div class="row">
+            <mat-chip-list class="col-6">
+              <mat-label>Zonas:</mat-label>
+              <mat-chip
+                class="bg-danger text-light"
+                *ngFor="let z of item.work_area | keyvalue"
+              >
+                {{ z.value }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- 
+<ul
+  class="list-group mt-3"
+  cdkDropList
+  (cdkDropListDropped)="onDropped($event)"
+>
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    #ejercicioList="cdkDropList"
+    [cdkDropListData]="ejercicios$"
+    [cdkDropListConnectedTo]="[rutinaList]"
+    class="example-list"
+    (cdkDropListDropped)="onDropped($event)">
+    <div class="example-box" *ngFor="let item of ejercicios$ | async" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #rutinaList="cdkDropList"
+    [cdkDropListData]="ejercicioRutina"
+    [cdkDropListConnectedTo]="[ejercicioList]"
+    class="example-list"
+    (cdkDropListDropped)="onDropped($event)">
+    <div class="example-box" *ngFor="let item of ejercicioRutina" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+
+
+
+  <li
+    class="list-group-item mx-3 mt-2 mb-2"
+    *ngFor="let item of ejercicios$ | async"
+    cdkDrag
+  >
+    <mat-card class="example-card mat-elevation-z24">
+      <mat-card-header>
+        <div
+          mat-card-avatar
+          [ngStyle]="{
+            'background-image': 'url(' + item.image + ')',
+            'background-size': 'cover'
+          }"
+        ></div>
+        <mat-card-title>nombre: {{ item.name }}</mat-card-title>
+        <mat-card-subtitle
+          >descripcion: {{ item.description }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content class="mt-2">
+        <img src="{{ item.image }}" alt="" width="150px" height="200px" />
+        <p>imagen: {{ item.image }}</p>
+        <p>tiempo: {{ item.time_rep }}</p>
+        <mat-chip-list>
+          <mat-label>Zonas:</mat-label>
+          <mat-chip
+            class="bg-danger text-light"
+            *ngFor="let z of item.work_area | keyvalue"
+          >
+            {{ z.value }}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </li>
+</ul> -->

@@ -14,7 +14,13 @@ import { AppComponent } from './app.component';
 import { AddEjercicioComponent } from './add-ejercicio/add-ejercicio.component';
 import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastrModule } from 'ngx-toastr';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 // import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AuthService } from '../auth/services/auth.service';
@@ -28,14 +34,33 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { AddRutinaComponent } from './add-rutina/add-rutina.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create-exercise', component: AddEjercicioComponent, canActivate: [AuthGuard] },
-  { path: 'edit-exercise', component: EditEjercicioComponent, canActivate: [AuthGuard] },
-  { path: 'list-exercise', component: ListEjercicioComponent, canActivate: [AuthGuard] },
+  {
+    path: 'create-exercise',
+    component: AddEjercicioComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-exercise',
+    component: EditEjercicioComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'list-exercise',
+    component: ListEjercicioComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-rutina',
+    component: AddRutinaComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'forgot-password', component: ForgorPasswordComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
@@ -54,6 +79,7 @@ const routes: Routes = [
     ListEjercicioComponent,
     PerfilComponent,
     ForgorPasswordComponent,
+    AddRutinaComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +98,10 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
+    DragDropModule,
     // AngularFirestore,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

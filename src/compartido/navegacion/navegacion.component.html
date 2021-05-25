@@ -19,11 +19,15 @@
             Ejercicios
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/create-exercise" routerLinkActive="active">add-ejercicio</a>
-            <li><a class="dropdown-item" routerLink="/list-exercise" routerLinkActive="active">list-ejercicio</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="/create-exercise" routerLinkActive="active">add-ejercicio</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/list-exercise" routerLinkActive="active">list-ejercicio</a>
+            </li>
           </ul>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item">
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-light" type="submit">
@@ -51,13 +55,13 @@
       <div *ngIf="authSvc.userData as user">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item btn">
-            <a class="nav-link  text-white d-flex align-items-center m-0 p-0" (click)="onEdit(1)">
-              <span class="mx-2 nav-link  m-0 p-0">
+            <a class="nav-link text-white d-flex align-items-center m-0 p-0" (click)="onEdit(1)">
+              <span class="mx-2 nav-link m-0 p-0">
                 {{ user.displayName ? user.displayName : "User" }}
               </span>
-              <i class="m-0 p-0"><img class=" rounded-circle mx-auto m-0 p-0 img-profile" src="{{
-                                          user.photoURL ? user.photoURL : '/assets/img_24787.png'
-                                        }}" alt="{{ user.displayName }}" width="40" /></i>
+              <i class="m-0 p-0"><img class="rounded-circle mx-auto m-0 p-0 img-profile" src="{{
+                    user.photoURL ? user.photoURL : '/assets/img_24787.png'
+                  }}" alt="{{ user.displayName }}" width="40" /></i>
             </a>
           </li>
         </ul>

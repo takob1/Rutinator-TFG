@@ -4,3 +4,6 @@
 .brand-rutinator:hover{
     color: black
 }
+.active, .dropdown-item:focus{
+  background-color: #dc3545;
+}

@@ -1,0 +1,18 @@
+.item-card {
+    border: solid 1px red;
+}
+.img-exercise{
+    width: 100%;
+    height: 150px;
+  object-fit: cover;/*contain*/
+}
+@media only screen and (max-width: 767px) {
+  .img-exercise {
+     height: 250px;
+     width: 70%;
+    
+  }
+  .item-card-img{
+     text-align: center;
+  }
+}

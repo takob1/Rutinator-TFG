@@ -1,120 +1,178 @@
 <app-navegacion></app-navegacion>
-<form
-  [formGroup]="ejercicioForm"
-  (ngSubmit)="submitEjercicioData()"
-  novalidate
-  enctype="multipart/form-data"
->
-  <div class="container mt-3">
-    <div class="row my-3">
-      <div class="mb-3">
-        <label for="name" class="form-label">Nombre del ejercicio</label>
-        <input
-          type="text"
-          formControlName="name"
-          class="form-control"
-          id="name"
-          placeholder="Dominada"
-          required
-          [class]="isValidField('name')"
-        />
-        <div class="invalid-feedback">
-          <span *ngIf="ejercicioForm.get('name')?.errors?.required">
-            El campo no puede estar vacio
-          </span>
-          <span *ngIf="ejercicioForm.get('name')?.errors?.minlength">
-            Introduzca un Nombre con mas de dos letras
-          </span>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="description" class="form-label"
-          >Descripción del ejercicio</label
-        >
-        <textarea
-          class="form-control"
-          id="description"
-          rows="3"
-          formControlName="description"
-          [class]="isValidField('description')"
-        ></textarea>
-      </div>
-
-      <div>
-        <label class="form-label" for="image">Seleccione una imagen</label>
-      </div>
-      <div class="input-group mb-3">
-        <br />
-        <input
-          type="file"
-          formControlName="image"
-          class="form-control"
-          id="image"
-          accept=".png,.jpg"
-          [class]="isValidField('image')"
-          #ejFoto
-          (change)="onFileSelected($event)"
-          autocomplete="off"
-        />
-        <div class="invalid-feedback">
-          <span *ngIf="ejercicioForm.get('image')?.errors?.required">
-            La imagen no puede estar vacía
-          </span>
-        </div>
-        <label class="input-group-text bg-danger text-light" for="image"
-          >Upload</label
-        >
-      </div>
-
-      <div>
-        <label class="form-label" for="image"
-          >Tiempo por Repetición (Segundos)</label
-        >
-      </div>
-      <div class="input-group mb-3">
-        <br />
-        <input
-          type="Number"
-          class="form-control"
-          id="tiempo"
-          min="0"
-          formControlName="time_rep"
-          [class]="isValidField('time_rep')"
-        />
-        <label class="input-group-text bg-danger text-light" for="tiempo"
-          >Tiempo/Rep</label
-        >
-      </div>
-    </div>
-
-    <div class="row my-3 container-fluid">
-      <div>
-        <label class="form-label" for="inputGroupFile02"
-          >Seleccione las zonas que ejercita
-        </label>
-      </div>
-      <div
-        class="btn-group"
-        role="group"
-        aria-label="Basic checkbox toggle button group"
-        id="area"
+<div class="container formContainer">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 col-form">
+      <form
+        [formGroup]="ejercicioForm"
+        (ngSubmit)="submitEjercicioData()"
+        novalidate
+        enctype="multipart/form-data"
       >
-        <div class="d-flex flex-stretch" *ngFor="let zona of zonas; index as i">
-          <input
-            type="checkbox"
-            [name]="zona"
-            class="btn-check"
-            [class]="isValidField('name')"
-            [id]="zona"
-            [value]="zona"
-            (change)="onCheck(zona)"
-            #inputs
-          />
-          <label class="btn btn-outline-danger" for="{{ zona }}">{{
-            zona
-          }}</label>
-          <!-- <input
+        <div class="container mt-3">
+          <div class="row my-3">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre del ejercicio</label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                placeholder="Dominada"
+                required
+                [class]="isValidField('name')"
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="ejercicioForm.get('name')?.errors?.required">
+                  El campo no puede estar vacio
+                </span>
+                <span *ngIf="ejercicioForm.get('name')?.errors?.minlength">
+                  Introduzca un Nombre con mas de dos letras
+                </span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label"
+                >Descripción del ejercicio</label
+              >
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                formControlName="description"
+                [class]="isValidField('description')"
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="form-label" for="image"
+                >Seleccione una imagen</label
+              >
+            </div>
+            <br />
+            <div class="input-group mb-3 file-field">
+              <label
+                class="
+                  input-group-text
+                  btn btn-outline-warning
+                  rounded-circle
+                  text-dark
+                "
+                for="image"
+                ><i class="fas fa-cloud-upload-alt"></i
+              ></label>
+              <input
+                type="file"
+                formControlName="image"
+                class="form-control"
+                id="image"
+                accept=".png,.jpg"
+                [class]="isValidField('image')"
+                #ejFoto
+                (change)="onFileSelected($event)"
+                autocomplete="off"
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="ejercicioForm.get('image')?.errors?.required">
+                  La imagen no puede estar vacía
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label" for="image"
+                >Tiempo por Repetición (Segundos)</label
+              >
+            </div>
+            <div class="input-group mb-3">
+              <br />
+              <input
+                type="Number"
+                class="form-control"
+                id="tiempo"
+                min="0"
+                formControlName="time_rep"
+                [class]="isValidField('time_rep')"
+              />
+              <label class="input-group-text bg-danger text-light" for="tiempo"
+                >Tiempo/Rep</label
+              >
+            </div>
+          </div>
+
+          <div class="row my-3 container-fluid">
+            <div class="col-md-12">
+              <label class="form-label" for="inputGroupFile02"
+                >Seleccione las zonas que ejercita
+              </label>
+            </div>
+            <div class="col-md-12 text-center">
+              <div
+                class="btn-toolbar"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+                id="area"
+              >
+                <div
+                  class="btn-group me-2"
+                  *ngFor="let zona of zonas; index as i"
+                  id="zonasPill"
+                >
+                  <input
+                    type="checkbox"
+                    [name]="zona"
+                    class="btn-check"
+                    [class]="isValidField('name')"
+                    [id]="zona"
+                    [value]="zona"
+                    (change)="onCheck(zona)"
+                    #inputs
+                  />
+                  <label
+                    class="
+                      btn btn-outline-warning
+                      text-white
+                      font-weight-bold
+                      my-2
+                    "
+                    for="{{ zona }}"
+                    >{{ zona }}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="
+              mt-5
+              form-group
+              text-center
+              d-flex
+              align-items-center
+              justify-content-center
+              gap-5
+            "
+          >
+            <button type="button" class="btn btn-danger" (click)="ResetForm()">
+              Reset
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-light"
+              [disabled]="!ejercicioForm.valid"
+            >
+              Añadir Ejercicio
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <input
             type="checkbox"
             class="btn-check"
             id="btncheck1"
@@ -227,36 +285,3 @@
             value="Gemelo"
           />
           <label class="btn btn-outline-danger" for="btncheck11">Gemelo</label> -->
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="
-        mt-5
-        form-group
-        text-center
-        d-flex
-        align-items-center
-        justify-content-center
-        gap-5
-      "
-    >
-      <button
-        type="button"
-        class="btn btn-outline-danger"
-        (click)="ResetForm()"
-      >
-        Reset
-      </button>
-
-      <button
-        type="submit"
-        class="btn btn-danger"
-        [disabled]="!ejercicioForm.valid"
-      >
-        Añadir Ejercicio
-      </button>
-    </div>
-  </div>
-</form>

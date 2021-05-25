@@ -22,7 +22,7 @@ export class AddRutinaComponent implements OnInit {
 
   // ejercicioRutina!: Ejercicio[];
 
-  ejercicioRutina = [];
+  ejercicioRutina: Ejercicio[] = [];
 
   constructor(
     private router: Router,

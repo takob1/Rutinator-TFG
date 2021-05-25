@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap%27");
+body {
+  font-family: "Teko", sans-serif;
+}
+input[type="file"]::file-selector-button {
+  display: none;
+  position: static;
+  background: url(https://cdn.icon-icons.com/icons2/196/PNG/128/image_23823.png)
+    no-repeat center;
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+}
+
+.formContainer {
+  box-shadow: 0 0 1em 0 rgba(51, 51, 51, 0.25);
+  background: url(https://cdn.pixabay.com/photo/2020/07/04/14/27/woman-5369752_960_720.jpg)
+    no-repeat center;
+  background-size: cover;
+  font-family: "Raleway", sans-serif;
+}
+
+.col-form {
+  border-radius: 0.5em;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 1em 0 rgba(51, 51, 51, 0.25);
+  overflow: hidden;
+  padding: 2em;
+  height: 100%;
+  z-index: 1;
+  color: white;
+  font-weight: bold;
+}

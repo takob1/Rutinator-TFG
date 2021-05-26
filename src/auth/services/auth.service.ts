@@ -39,9 +39,9 @@ export class AuthService {
     });
   }
 
-  register(email: string, password: string) {
+  register(userData: any) {
     return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(userData.email, userData.password)
       .then((result) => {
         this.SendVerificationMail();
         this.SetUserData(result.user);
@@ -125,6 +125,8 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      firstName: user.firstName,
+      lastName: user.lastName,
     };
     return userRef.set(userData, {
       merge: true,
@@ -142,6 +144,8 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      firstName: user.firstName,
+      lastName: user.lastName,
     };
     const extra = {
       tag: 'braylout',

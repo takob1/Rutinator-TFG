@@ -39,7 +39,7 @@ export class AuthService {
     });
   }
 
-  register(userData: any) {
+  register(userData: User | any) {
     return this.afAuth
       .createUserWithEmailAndPassword(userData.email, userData.password)
       .then((result) => {
@@ -107,7 +107,7 @@ export class AuthService {
           this.router.navigate(['home']);
         });
         this.SetUserData(result.user);
-        this.UpdateUserData(result.user);
+        //this.UpdateUserData(result.user);
       })
       .catch((error) => {
         //window.alert(error);

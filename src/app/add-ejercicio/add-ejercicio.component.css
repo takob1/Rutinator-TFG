@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 body{
     font-family: 'Teko', sans-serif;
+     background: rgb(0,0,0); /* Fallback color */
 }
 input[type=file]::file-selector-button {
     display: none;
@@ -30,6 +31,7 @@ input[type=file]::file-selector-button {
 font-weight: bold;
 }
 .container-padre{
+      font-family: 'Teko', sans-serif;
     height: 90vh;
     display: flex;
     align-items: center;

@@ -6,6 +6,7 @@ import { AuthService } from 'src/auth/services/auth.service';
 import { CrudrutinaService } from 'src/compartido/crudrutina.service';
 import { Ejercicio } from 'src/compartido/ejercicio';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../services/user';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first } from 'rxjs/operators';
+import { first, switchMap } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import {
   AngularFirestore,
@@ -12,6 +12,7 @@ import { JsonPipe } from '@angular/common';
 import { error } from 'selenium-webdriver';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,8 @@ export class AuthService {
   public resetForm!: FormGroup;
   userData: any;
 
+  user!: Observable<User | any>;
+
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -27,6 +30,19 @@ export class AuthService {
     public ngZone: NgZone,
     public toastr: ToastrService
   ) {
+    /*this.user = this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user))
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+
+        } else {
+          localStorage.setItem('user', '');
+          return of(null);
+
+        }
+      })
+    );*/
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -39,12 +55,13 @@ export class AuthService {
     });
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, fName: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationMail();
-        this.SetUserData(result.user);
+        //console.log(result)
+        this.SetUserData(result.user, fName);
       })
       .catch((error) => {
         window.alert(error.message);
@@ -58,7 +75,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['home']);
         });
-        this.SetUserData(result.user);
+        this.UpdateUserData(result.user);
       })
       .catch((error) => {
         //window.alert(error.message);
@@ -104,19 +121,22 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
+          // console.log(result.user)
           this.router.navigate(['home']);
+          // this.SetUserData(result.user);
         });
-        this.SetUserData(result.user);
+        // this.SetUserData(result.user);
         this.UpdateUserData(result.user);
+        console.log(result.user)
       })
       .catch((error) => {
         //window.alert(error);
       });
   }
 
-  SetUserData(user: User | any) {
-    console.log(user);
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+  SetUserData(user: User | any, fName: string) {
+    //console.log(user);
+    const userRef: AngularFirestoreDocument<User | any> = this.afs.doc(
       `users/${user.uid}`
     );
     const userData: User = {
@@ -125,9 +145,12 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      fName: fName,
+      lName: "user.lastName"
     };
+    console.log(userData);
     return userRef.set(userData, {
-      merge: true,
+      merge: true
     });
   }
 
@@ -142,6 +165,9 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      fName: "",
+      lName: ""
+
     };
     const extra = {
       tag: 'braylout',

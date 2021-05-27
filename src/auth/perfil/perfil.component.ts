@@ -54,7 +54,8 @@ export class PerfilComponent implements OnInit {
   private initForm(): void {
     this.profileForm = this._builder.group({
       displayName: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
     });
   }

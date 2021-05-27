@@ -25,9 +25,9 @@
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Apellido</label>
                             <input type="text" class="form-control" id="inputPassword4" placeholder="Apellido"
-                                formControlName="surname" [class]="isValidField('surname')">
+                                formControlName="lastName" [class]="isValidField('lastName')">
                             <div class="invalid-feedback">
-                                <span *ngIf="profileForm.get('surname')?.errors?.required">
+                                <span *ngIf="profileForm.get('lastName')?.errors?.required">
                                     El campo non puede estar vacio
                                 </span>
                             </div>

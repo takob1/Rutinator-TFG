@@ -5,30 +5,64 @@
 
       <span id="controlDatos" class="text-danger mb-2"></span>
       <!-- login -->
-      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-        <div class="form-floating mb-4">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-            formControlName="email"
-            required
-            autocomplete="email"
-          />
-          <label for="floatingInput">Correo Electrónico</label>
+      <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="col-md-6 form-floating ">
+
+          <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" formControlName="fName"
+            [class]="isValidField('fName')">
+          <label for="floatingInput" class="form-label">Nombre</label>
+          <div class="invalid-feedback">
+            <span *ngIf="registerForm.get('fName')?.errors?.required">
+              El campo no puede estar vacio
+            </span>
+          </div>
         </div>
-        <div class="form-floating mb-4">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-            formControlName="password"
-            required
-            autocomplete="current-password"
-          />
+        <div class="col-md-6 form-floating ">
+
+          <input type="text" class="form-control" id="floatingInput" placeholder="Apellido" formControlName="lName"
+            [class]="isValidField('lName')">
+          <label for="floatingInput" class="form-label">Apellido</label>
+          <div class="invalid-feedback">
+            <span *ngIf="registerForm.get('lName')?.errors?.required">
+              El campo no puede estar vacio
+            </span>
+          </div>
+        </div>
+        <!-- <div class="col-md-12 form-floating ">
+          <input type="text" class="form-control" id="floatingInput" placeholder="tagName" formControlName="displayName"
+            [class]="isValidField('displayName')" />
+          <label for="floatingInput">Nombre de Usuario</label>
+          <div class="invalid-feedback">
+            <span *ngIf="registerForm.get('displayName')?.errors?.required">
+              El campo no puede estar vacio
+            </span>
+            <span *ngIf="registerForm.get('displayName')?.errors?.pattern">
+              Introduzca un email valido
+            </span>
+          </div>
+        </div> -->
+        <div class="col-md-12 form-floating ">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            formControlName="email" autocomplete="email" [class]="isValidField('email')" />
+          <label for="floatingInput">Correo Electrónico</label>
+          <div class="invalid-feedback">
+            <span *ngIf="registerForm.get('email')?.errors?.required">
+              El campo no puede estar vacio
+            </span>
+            <span *ngIf="registerForm.get('email')?.errors?.pattern">
+              Introduzca un email valido
+            </span>
+          </div>
+        </div>
+        <div class="form-floating col-12 mb-4">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+            formControlName="password" [class]="isValidField('password')" required autocomplete="current-password" />
           <label for="floatingPassword">Contraseña</label>
+          <div class="invalid-feedback">
+            <span *ngIf="registerForm.get('password')?.errors?.required">
+              El campo no puede estar vacio
+            </span>
+          </div>
         </div>
         <div class="d-grid gap-2 mt-3">
           <button class="btn btn-dark" type="submit">Registrarse</button>

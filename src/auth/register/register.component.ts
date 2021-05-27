@@ -33,9 +33,9 @@ export class RegisterComponent implements OnInit {
 
   private initForm(): void {
     this.registerForm = this._builder.group({
-      displayName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
+      //displayName: ['', [Validators.required]],
+      lName: ['', [Validators.required]],
+      fName: ['', [Validators.required]],
       password: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
     });
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
     //const { email, password } = this.registerForm.value;
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      this.authSvc.register(this.registerForm.value);
+      this.authSvc.register(this.registerForm.controls['email'].value, this.registerForm.controls['password'].value, this.registerForm.controls['fName'].value);
     } else {
       console.log('no valido');
     }

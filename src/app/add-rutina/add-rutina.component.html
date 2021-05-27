@@ -57,6 +57,21 @@
       </div>
 
       <div>
+        <label class="form-label" for="image">Dificultad</label>
+      </div>
+      <mat-slider
+        thumbLabel
+        formControlName="dificultad"
+        [class]="isValidField('dificultad')"
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="10"
+        aria-label="units"
+      ></mat-slider>
+
+      <div>
         <button
           mat-button
           matStepperNext
@@ -208,6 +223,9 @@
     <ng-template matStepLabel>Resumen</ng-template>
     <p>You are now done.</p>
     <div>
+      <button class="btn btn-outline-primary" (click)="submitRutinaData()">
+        Finalizar
+      </button>
       <button matStepperPrevious class="btn btn-primary me-3">Back</button>
       <button (click)="stepper.reset()" class="btn btn-primary">Reset</button>
     </div>

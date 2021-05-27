@@ -1,6 +1,11 @@
 <app-navegacion></app-navegacion>
-
-<div class="contanier-fluid d-flex align-items-center py-5">
+<div class="container mt-5" *ngFor="let item of rutinas$ | async">
+  {{ item.name }}
+  <p *ngFor="let z of item.exercises | keyvalue">
+    <img src="{{ z.value['image'] }}" alt="" />
+  </p>
+</div>
+<!-- <div class="contanier-fluid d-flex align-items-center py-5">
   <div id="Usuario" class="container w-75 pl-5 rounded">
     <div class="row align-items-center" *ngIf="authSvc.userData as user">
       <div class="col-md col-md-4 p-3">
@@ -67,10 +72,5 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-12">
-        <button type="submit" class="btn btn-danger">Sign in</button>
-      </div>
-    </div> -->
   </div>
-</div>
+</div> -->

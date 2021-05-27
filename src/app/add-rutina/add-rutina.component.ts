@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CRUDejercicioService } from '../../compartido/crudejercicio.service';
+import { CrudrutinaService } from '../../compartido/crudrutina.service';
 import { ToastrService } from 'ngx-toastr';
 import { NavigationExtras, Router } from '@angular/router';
 import {
@@ -20,16 +21,13 @@ export class AddRutinaComponent implements OnInit {
   public firstFormGroup!: FormGroup;
   ej!: Ejercicio[];
 
-  // ejercicios$ = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  // ejercicioRutina!: Ejercicio[];
-
   ejercicioRutina: Ejercicio[] = [];
 
   constructor(
     private router: Router,
     public fb: FormBuilder,
     public crudApi: CRUDejercicioService,
+    public crudApiRutina: CrudrutinaService,
     public toastr: ToastrService,
     private _formBuilder: FormBuilder
   ) {}
@@ -56,6 +54,7 @@ export class AddRutinaComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2)]],
       description: [''],
       time: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      dificultad: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
   }
 
@@ -63,11 +62,43 @@ export class AddRutinaComponent implements OnInit {
     return this.firstFormGroup.get('name');
   }
 
+  get description() {
+    return this.firstFormGroup.get('description');
+  }
+
+  get time() {
+    return this.firstFormGroup.get('time');
+  }
+
+  get dificultad() {
+    return this.firstFormGroup.get('dificultad');
+  }
+
+  ResetForm() {
+    this.firstFormGroup.reset();
+  }
   saveData() {
     console.log(this.firstFormGroup.value);
   }
 
+  formatLabel(value: number) {
+    if (value >= 11) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
   saveEx() {}
+
+  submitRutinaData() {
+    this.crudApiRutina.AddRutina(
+      this.firstFormGroup.value,
+      this.ejercicioRutina
+    );
+    this.toastr.success(
+      this.firstFormGroup.controls['name'].value + ' successfully added!'
+    );
+  }
 
   onDropped(event: CdkDragDrop<any>) {
     console.log(event.previousContainer);

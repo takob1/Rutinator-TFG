@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { from, Observable } from 'rxjs';
 import { AuthService } from 'src/auth/services/auth.service';
+import { CrudrutinaService } from 'src/compartido/crudrutina.service';
+import { User } from '../services/user';
+import { Rutina } from '../../compartido/rutina';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
+import { flatMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-perfil',
@@ -9,29 +19,32 @@ import { AuthService } from 'src/auth/services/auth.service';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
+  rutinas$ = this.rutinaService.rutinas2$;
+
   profileForm!: FormGroup;
 
   userData: any;
 
-  private isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  private isEmail =
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   value: any;
 
   constructor(
     public authSvc: AuthService,
     private _builder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private rutinaService: CrudrutinaService,
+    public afs: AngularFirestore
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.value = navigation?.extras?.state;
-    this.userData = JSON.parse(localStorage.getItem('user')!)
-
+    this.userData = JSON.parse(localStorage.getItem('user')!);
   }
 
   ngOnInit(): void {
     this.initForm();
     console.log(this.userData);
     this.profileForm.patchValue(this.userData);
-
   }
 
   onSubmit(): void {
@@ -47,8 +60,8 @@ export class PerfilComponent implements OnInit {
     return !validatedFiel?.valid && validatedFiel?.touched
       ? 'is-invalid'
       : validatedFiel?.touched
-        ? 'is-valid'
-        : '';
+      ? 'is-valid'
+      : '';
   }
 
   private initForm(): void {

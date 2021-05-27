@@ -22,7 +22,9 @@ import { User } from 'src/auth/services/user';
 })
 export class CrudrutinaService {
   rutinas!: Observable<Rutina[]>;
+  rutinas2$!: Observable<Rutina[]>;
 
+  RutinaCollection$!: AngularFirestoreCollection<Rutina>;
   RutinaCollection!: AngularFirestoreCollection<Rutina>;
 
   constructor(
@@ -32,7 +34,12 @@ export class CrudrutinaService {
     public authSvc: AuthService
   ) {
     this.RutinaCollection = afs.collection<Rutina>('rutinas');
+    this.RutinaCollection$ = afs.collection<Rutina>('rutinas', (ref) =>
+      ref.where('uid', '==', this.getCurrentUserUid())
+    );
+
     this.getListaRutinas();
+    this.getListaRutinasfiltro();
   }
 
   AddRutina(rutina: Rutina | any, ejercicios: Ejercicio[]) {
@@ -65,9 +72,29 @@ export class CrudrutinaService {
 
     return usuario;
   }
+
   getListaRutinas() {
     this.rutinas = this.RutinaCollection.snapshotChanges().pipe(
       map((actions) => actions.map((a) => a.payload.doc.data() as Rutina))
     );
+  }
+
+  getCurrentUserUid() {
+    var usuario: User = JSON.parse(localStorage.getItem('user')!);
+
+    console.log(usuario.uid);
+    return usuario.uid;
+  }
+
+  getListaRutinasfiltro() {
+    this.rutinas2$ = this.RutinaCollection$.snapshotChanges().pipe(
+      map((actions) => actions.map((a) => a.payload.doc.data() as Rutina))
+    );
+  }
+
+  getByUserRef(uid: string) {
+    return (this.RutinaCollection = this.afs.collection('rutinas', (ref) =>
+      ref.where('uid', '==', uid)
+    ));
   }
 }

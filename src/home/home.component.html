@@ -3,14 +3,10 @@
 <div class="container mt-5" *ngFor="let item of rutinas$ | async">
   <mat-card class="example-card mat-elevation-z24 container-fluid">
     <mat-card-header class="d-flex align-items-center">
-      <div
-        class=""
-        mat-card-avatar
-        [ngStyle]="{
+      <div class="" mat-card-avatar [ngStyle]="{
           'background-image': 'url(' + item.Owner_image + ')',
           'background-size': 'cover'
-        }"
-      ></div>
+        }"></div>
       <mat-card-title class="">{{ item.Owner_name }}</mat-card-title>
     </mat-card-header>
     <div class="row mb-3">
@@ -20,20 +16,14 @@
       <div class="row">
         <div class="col-md col-md-2 item-card item-card-img text-center">
           <p class="h4">{{ item.name }}</p>
-          <mat-card-subtitle
-            >Descripcion: {{ item.description }}</mat-card-subtitle
-          >
+          <mat-card-subtitle>Descripcion: {{ item.description }}</mat-card-subtitle>
         </div>
         <div class="col-md-9 col-sm-11 item-card overflow-hidden">
           <div class="row row-cards">
             <div class="col-md-3" *ngFor="let z of item.exercises | keyvalue">
               <div class="card profile-card-1">
                 <img src="{{ z.value['image'] }}" alt="" class="background" />
-                <img
-                  src="{{ z.value['image'] }}"
-                  alt="profile-image"
-                  class="profile"
-                />
+                <img src="{{ z.value['image'] }}" alt="profile-image" class="profile" />
                 <div class="card-content blockquote text-center">
                   <h2 class="">{{ z.value["name"] }}</h2>
                   <h3 class="blockquote-footer text-light">
@@ -44,28 +34,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="
-            mat-menu
-            item-card
-            col-sm-1
-            btn
-            d-flex
-            justify-content-center
-            align-items-center
-            text-white
-          "
-        >
-          <div class="my-auto">
-            <button class="btn" [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item class="text-warning">EDITAR</button>
-              <button mat-menu-item class="text-danger">BORRAR</button>
-            </mat-menu>
-          </div>
-        </div>
+
       </div>
       <div class="row my-3">
         <mat-divider></mat-divider>
@@ -76,12 +45,12 @@
             <mat-label class="">Dificultad:</mat-label>
             <mat-chip class="bg-danger text-light me-2">{{
               item.dificultad
-            }}</mat-chip>
+              }}</mat-chip>
 
             <mat-label class="">Duración:</mat-label>
             <mat-chip class="bg-danger text-light me-2">{{
               item.time
-            }}</mat-chip>
+              }}</mat-chip>
             <!-- <mat-chip class="bg-danger text-light " *ngFor="let z of item.work_area | keyvalue">
               {{ z.value }}
             </mat-chip> -->

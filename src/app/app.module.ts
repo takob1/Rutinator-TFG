@@ -1,43 +1,35 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { PerfilComponent } from 'src/auth/perfil/perfil.component';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { NavegacionComponent } from '../compartido/navegacion/navegacion.component';
 import { HomeComponent } from '../home/home.component';
-import { AppComponent } from './app.component';
 import { AddEjercicioComponent } from './add-ejercicio/add-ejercicio.component';
-import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
-import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ToastrModule } from 'ngx-toastr';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-// import { AngularFirestore } from '@angular/fire/firestore';
-
-import { AuthService } from '../auth/services/auth.service';
-import { PerfilComponent } from 'src/auth/perfil/perfil.component';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatSliderModule } from '@angular/material/slider';
 import { AddRutinaComponent } from './add-rutina/add-rutina.component';
-import { from } from 'rxjs';
+import { AppComponent } from './app.component';
+import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.component';
+import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
+import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -82,6 +74,7 @@ const routes: Routes = [
     PerfilComponent,
     ForgorPasswordComponent,
     AddRutinaComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,

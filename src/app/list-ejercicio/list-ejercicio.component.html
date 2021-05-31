@@ -2,13 +2,16 @@
 
 <div class="container mt-5" *ngFor="let item of ejercicios$ | async">
   <mat-card class="example-card mat-elevation-z24 container-fluid">
-    <mat-card-header class=" d-flex align-items-center">
-      <div class="" mat-card-avatar [ngStyle]="{
+    <mat-card-header class="d-flex align-items-center">
+      <div
+        class=""
+        mat-card-avatar
+        [ngStyle]="{
           'background-image': 'url(' + item.image + ')',
           'background-size': 'cover'
-        }"></div>
+        }"
+      ></div>
       <mat-card-title class="">nombre: {{ item.name }}</mat-card-title>
-
     </mat-card-header>
     <div class="row my-3">
       <mat-divider></mat-divider>
@@ -18,22 +21,38 @@
         <div class="col-md col-md-2 item-card item-card-img">
           <img src="{{ item.image }}" alt="" class="img-exercise" />
         </div>
-        <div class="col-md-9  col-sm-11 item-card my-auto overflow-auto">
+        <div class="col-md-9 col-sm-11 item-card my-auto overflow-auto">
           <p>imagen: {{ item.image }}</p>
           <p>tiempo: {{ item.time_rep }}</p>
-          <mat-card-subtitle>descripcion: {{ item.description }}</mat-card-subtitle>
+          <mat-card-subtitle
+            >descripcion: {{ item.description }}</mat-card-subtitle
+          >
         </div>
         <div
-          class="mat-menu item-card col-sm-1  btn btn-outline-danger d-flex justify-content-center align-items-center text-white">
-          <div class="my-auto ">
-            <button class="btn " [matMenuTriggerFor]="menu">
+          class="
+            mat-menu
+            item-card
+            col-sm-1
+            btn btn-outline-danger
+            d-flex
+            justify-content-center
+            align-items-center
+            text-white
+          "
+        >
+          <div class="my-auto">
+            <button class="btn" [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item class="text-warning" (click)="edit(item)">
                 EDITAR
               </button>
-              <button mat-menu-item class="text-danger" (click)="delete(item.$id)">
+              <button
+                mat-menu-item
+                class="text-danger"
+                (click)="delete(item.$id)"
+              >
                 BORRAR
               </button>
             </mat-menu>
@@ -47,15 +66,15 @@
         <mat-chip-list>
           <div class="">
             <mat-label class="">Zonas:</mat-label>
-            <mat-chip class="bg-danger text-light " *ngFor="let z of item.work_area | keyvalue">
+            <mat-chip
+              class="bg-danger text-light"
+              *ngFor="let z of item.work_area | keyvalue"
+            >
               {{ z.value }}
             </mat-chip>
           </div>
         </mat-chip-list>
-
       </div>
-
     </mat-card-content>
-
   </mat-card>
 </div>

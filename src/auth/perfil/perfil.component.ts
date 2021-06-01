@@ -6,6 +6,7 @@ import { AuthService } from 'src/auth/services/auth.service';
 import { CrudrutinaService } from 'src/compartido/crudrutina.service';
 import { User } from '../services/user';
 import { Rutina } from '../../compartido/rutina';
+import { ToastrService } from 'ngx-toastr';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -21,6 +22,12 @@ import { flatMap, map } from 'rxjs/operators';
 export class PerfilComponent implements OnInit {
   rutinas$ = this.rutinaService.rutinas2$;
 
+  navigationExtras?: NavigationExtras = {
+    state: {
+      value: null,
+    },
+  };
+
   profileForm!: FormGroup;
 
   userData: any;
@@ -33,6 +40,7 @@ export class PerfilComponent implements OnInit {
     public authSvc: AuthService,
     private _builder: FormBuilder,
     private router: Router,
+    public toastr: ToastrService,
     private rutinaService: CrudrutinaService,
     public afs: AngularFirestore
   ) {
@@ -74,5 +82,19 @@ export class PerfilComponent implements OnInit {
   }
   onGoBack(): void {
     this.router.navigate(['home']);
+  }
+
+  edit(item: any): void {
+    this.navigationExtras!.state!.value = item;
+    this.router.navigate(['edit-rutina'], this.navigationExtras);
+  }
+
+  async delete(id: string): Promise<void> {
+    try {
+      await this.rutinaService.deleteRutina(id);
+      this.toastr.error('Rutina eliminado correctamente');
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

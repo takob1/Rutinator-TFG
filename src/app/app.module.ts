@@ -30,6 +30,8 @@ import { EditEjercicioComponent } from './edit-ejercicio/edit-ejercicio.componen
 import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
 import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { EditRutinaComponent } from './edit-rutina/edit-rutina.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,6 +45,11 @@ const routes: Routes = [
   {
     path: 'edit-exercise',
     component: EditEjercicioComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-rutina',
+    component: EditRutinaComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -75,6 +82,7 @@ const routes: Routes = [
     ForgorPasswordComponent,
     AddRutinaComponent,
     SearchFilterPipe,
+    EditRutinaComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +104,7 @@ const routes: Routes = [
     DragDropModule,
     MatStepperModule,
     MatSliderModule,
+    MatAutocompleteModule,
     // AngularFirestore,
   ],
   providers: [],

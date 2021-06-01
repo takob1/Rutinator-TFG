@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { CRUDejercicioService } from '../../compartido/crudejercicio.service';
-import { CrudrutinaService } from '../../compartido/crudrutina.service';
-import { ToastrService } from 'ngx-toastr';
-import { NavigationExtras, Router } from '@angular/router';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Ejercicio } from 'src/compartido/ejercicio';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CRUDejercicioService } from 'src/compartido/crudejercicio.service';
+import { CrudrutinaService } from 'src/compartido/crudrutina.service';
+import { Ejercicio } from 'src/compartido/ejercicio';
+import { Rutina } from 'src/compartido/rutina';
 
 @Component({
-  selector: 'app-add-rutina',
-  templateUrl: './add-rutina.component.html',
-  styleUrls: ['./add-rutina.component.css'],
+  selector: 'app-edit-rutina',
+  templateUrl: './edit-rutina.component.html',
+  styleUrls: ['./edit-rutina.component.css'],
 })
-export class AddRutinaComponent implements OnInit {
+export class EditRutinaComponent implements OnInit {
+  rutina: Rutina;
+
   ejercicios$ = this.crudApi.ejercicios;
   public firstFormGroup!: FormGroup;
   ej!: Ejercicio[];
@@ -29,7 +32,10 @@ export class AddRutinaComponent implements OnInit {
     public crudApi: CRUDejercicioService,
     public crudApiRutina: CrudrutinaService,
     public toastr: ToastrService
-  ) {}
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.rutina = navigation?.extras?.state?.value;
+  }
 
   ngOnInit(): void {
     this.crudApi.ejercicios.subscribe((exercise: any) => {
@@ -37,6 +43,12 @@ export class AddRutinaComponent implements OnInit {
     });
 
     this.ejercicioFormulario();
+
+    if (typeof this.rutina === 'undefined') {
+      this.router.navigate(['add-rutina']);
+    } else {
+      this.firstFormGroup.patchValue(this.rutina);
+    }
   }
 
   isValidField(field: string): string {
@@ -89,9 +101,10 @@ export class AddRutinaComponent implements OnInit {
   }
 
   submitRutinaData() {
-    this.crudApiRutina.AddRutina(
+    this.crudApiRutina.updateRutina(
       this.firstFormGroup.value,
-      this.ejercicioRutina
+      this.ejercicioRutina,
+      this.rutina.$id
     );
     this.toastr.success(
       this.firstFormGroup.controls['name'].value + ' successfully added!'

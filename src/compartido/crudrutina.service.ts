@@ -97,4 +97,52 @@ export class CrudrutinaService {
       ref.where('uid', '==', uid)
     ));
   }
+
+  updateRutina(
+    rutina: Rutina | any,
+    ejercicios: Ejercicio[],
+    ejId: string
+  ): Promise<void> {
+    var user = this.getCurrentUser();
+    return new Promise(async (resolve, reject) => {
+      try {
+        const id = ejId;
+        const data: Rutina = {
+          $id: id,
+          Owner_image: user.photoURL,
+          Owner_name: user.displayName,
+          dificultad: rutina.dificultad,
+          name: rutina.name,
+          time: rutina.time,
+          description: rutina.description,
+          exercises: ejercicios,
+          uid: user.uid,
+        };
+        const result = await this.RutinaCollection.doc(id).set(data);
+        resolve(result);
+      } catch (err) {
+        reject(err.message);
+      }
+    });
+    // this.ejercicioRef.update({
+    //   name: ejercicio.name,
+    //   description: ejercicio.description,
+    //   image: ejercicio.image,
+    //   time_rep: ejercicio.time_rep,
+    //   work_area: {},
+    // });
+  }
+
+  deleteRutina(id: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await this.RutinaCollection.doc(id).delete();
+        resolve(result);
+      } catch (err) {
+        reject(err.message);
+      }
+    });
+    // this.ejercicioRef = this.db.object('ejercicios/' + id);
+    // this.ejercicioRef.remove();
+  }
 }

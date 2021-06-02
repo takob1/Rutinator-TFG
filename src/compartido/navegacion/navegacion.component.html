@@ -18,7 +18,7 @@
       class="collapse navbar-collapse justify-content-md-center"
       id="navbarSupportedContent"
     >
-      <ul class="navbar-nav ml-auto">
+      <ol class="navbar-nav ml-auto">
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -63,6 +63,31 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Ordenar
+            <i class="fas fa-filter"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLinkActive="active"
+                >A-Z <i class="fas fa-sort-alpha-down"></i
+              ></a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLinkActive="active"
+                >Z-A <i class="fas fa-sort-alpha-up"></i
+              ></a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <form class="d-flex">
             <input
@@ -84,7 +109,7 @@
             <i class="fas fa-sign-out-alt"></i>Log out
           </a>
         </li>
-      </ul>
+      </ol>
       <!-- <form class="d-flex">
         <input
           class="form-control me-2"

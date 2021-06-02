@@ -32,10 +32,14 @@ import { ListEjercicioComponent } from './list-ejercicio/list-ejercicio.componen
 import { SearchFilterPipe } from './search-filter.pipe';
 import { EditRutinaComponent } from './edit-rutina/edit-rutina.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ListEjercicioSortAscComponent } from './list-ejercicio-sort-asc/list-ejercicio-sort-asc.component';
+import { ListEjercicioSortDescComponent } from './list-ejercicio-sort-desc/list-ejercicio-sort-desc.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'home-sort-asc', component: ListEjercicioSortAscComponent },
+  { path: 'home-sort-desc', component: ListEjercicioSortDescComponent },
   { path: 'register', component: RegisterComponent },
   {
     path: 'create-exercise',
@@ -83,6 +87,8 @@ const routes: Routes = [
     AddRutinaComponent,
     SearchFilterPipe,
     EditRutinaComponent,
+    ListEjercicioSortAscComponent,
+    ListEjercicioSortDescComponent,
   ],
   imports: [
     BrowserModule,

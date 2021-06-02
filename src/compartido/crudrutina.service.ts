@@ -23,9 +23,13 @@ import { User } from 'src/auth/services/user';
 export class CrudrutinaService {
   rutinas!: Observable<Rutina[]>;
   rutinas2$!: Observable<Rutina[]>;
+  rutinaAsc!: Observable<Rutina[]>;
+  rutinaDesc!: Observable<Rutina[]>;
 
   RutinaCollection$!: AngularFirestoreCollection<Rutina>;
   RutinaCollection!: AngularFirestoreCollection<Rutina>;
+  RutinaCollectionAsc!: AngularFirestoreCollection<Rutina>;
+  RutinaCollectionDesc!: AngularFirestoreCollection<Rutina>;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -38,8 +42,17 @@ export class CrudrutinaService {
       ref.where('uid', '==', this.getCurrentUserUid())
     );
 
+    this.RutinaCollectionAsc = afs.collection<Rutina>('rutinas', (ref) =>
+      ref.orderBy('name', 'asc')
+    );
+    this.RutinaCollectionDesc = afs.collection<Rutina>('rutinas', (ref) =>
+      ref.orderBy('name', 'desc')
+    );
+
     this.getListaRutinas();
     this.getListaRutinasfiltro();
+    this.sortAsc();
+    this.sortDesc();
   }
 
   AddRutina(rutina: Rutina | any, ejercicios: Ejercicio[]) {
@@ -88,6 +101,18 @@ export class CrudrutinaService {
 
   getListaRutinasfiltro() {
     this.rutinas2$ = this.RutinaCollection$.snapshotChanges().pipe(
+      map((actions) => actions.map((a) => a.payload.doc.data() as Rutina))
+    );
+  }
+
+  sortAsc() {
+    this.rutinaAsc = this.RutinaCollectionAsc.snapshotChanges().pipe(
+      map((actions) => actions.map((a) => a.payload.doc.data() as Rutina))
+    );
+  }
+
+  sortDesc() {
+    this.rutinaDesc = this.RutinaCollectionDesc.snapshotChanges().pipe(
       map((actions) => actions.map((a) => a.payload.doc.data() as Rutina))
     );
   }

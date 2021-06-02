@@ -1,0 +1,141 @@
+<app-navegacion [(searchModel)]="searchModel"></app-navegacion>
+
+<div
+  class="container mt-5"
+  *ngFor="let item of rut | searchFilter: searchModel"
+>
+  <mat-card class="example-card mat-elevation-z24 container-fluid">
+    <mat-card-header class="d-flex align-items-center">
+      <div
+        class=""
+        mat-card-avatar
+        [ngStyle]="{
+          'background-image': 'url(' + item.Owner_image + ')',
+          'background-size': 'cover'
+        }"
+      ></div>
+      <mat-card-title class="">{{ item.Owner_name }}</mat-card-title>
+    </mat-card-header>
+    <div class="row mb-3">
+      <mat-divider></mat-divider>
+    </div>
+    <mat-card-content class="container-fluid">
+      <div class="row">
+        <div class="col-md col-md-2 item-card item-card-img text-center">
+          <p class="h4">{{ item.name }}</p>
+          <mat-card-subtitle
+            >Descripcion: {{ item.description }}</mat-card-subtitle
+          >
+        </div>
+        <div class="col-md-9 col-sm-11 item-card overflow-hidden">
+          <div class="row row-cards">
+            <div class="col-md-3" *ngFor="let z of item.exercises as Ejercicio">
+              <div class="card profile-card-1">
+                <div class="card-content blockquote text-center">
+                  <div class="card profile-card-1">
+                    <img src="{{ z.image }}" alt="" class="background" />
+                    <img
+                      src="{{ z.image }}"
+                      alt="profile-image"
+                      class="profile"
+                    />
+                    <div class="card-content blockquote text-center">
+                      <h2 class="">{{ z.name }}</h2>
+                      <h3 class="blockquote-footer text-light">
+                        {{ z.name }}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="row">
+        <mat-chip-list>
+          <div class="">
+            <mat-label class="">Dificultad:</mat-label>
+            <mat-chip class="bg-danger text-light me-2">{{
+              item.dificultad
+            }}</mat-chip>
+
+            <mat-label class="">Duración:</mat-label>
+            <mat-chip class="bg-danger text-light me-2">{{
+              item.time
+            }}</mat-chip>
+          </div>
+        </mat-chip-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!-- <div class="container mt-5" *ngFor="let item of rutinas$ | async">
+  <mat-card class="example-card mat-elevation-z24 container-fluid">
+    <mat-card-header class="d-flex align-items-center">
+      <div
+        class=""
+        mat-card-avatar
+        [ngStyle]="{
+          'background-image': 'url(' + item.Owner_image + ')',
+          'background-size': 'cover'
+        }"
+      ></div>
+      <mat-card-title class="">{{ item.Owner_name }}</mat-card-title>
+    </mat-card-header>
+    <div class="row mb-3">
+      <mat-divider></mat-divider>
+    </div>
+    <mat-card-content class="container-fluid">
+      <div class="row">
+        <div class="col-md col-md-2 item-card item-card-img text-center">
+          <p class="h4">{{ item.name }}</p>
+          <mat-card-subtitle
+            >Descripcion: {{ item.description }}</mat-card-subtitle
+          >
+        </div>
+        <div class="col-md-9 col-sm-11 item-card overflow-hidden">
+          <div class="row row-cards">
+            <div class="col-md-3" *ngFor="let z of item.exercises | keyvalue">
+              <div class="card profile-card-1">
+                <img src="{{ z.value['image'] }}" alt="" class="background" />
+                <img
+                  src="{{ z.value['image'] }}"
+                  alt="profile-image"
+                  class="profile"
+                />
+                <div class="card-content blockquote text-center">
+                  <h2 class="">{{ z.value["name"] }}</h2>
+                  <h3 class="blockquote-footer text-light">
+                    {{ z.value["name"] }}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="row">
+        <mat-chip-list>
+          <div class="">
+            <mat-label class="">Dificultad:</mat-label>
+            <mat-chip class="bg-danger text-light me-2">{{
+              item.dificultad
+            }}</mat-chip>
+
+            <mat-label class="">Duración:</mat-label>
+            <mat-chip class="bg-danger text-light me-2">{{
+              item.time
+            }}</mat-chip>
+          </div>
+        </mat-chip-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> -->

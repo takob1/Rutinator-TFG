@@ -18,7 +18,7 @@
       class="collapse navbar-collapse justify-content-md-center"
       id="navbarSupportedContent"
     >
-      <ol class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -77,12 +77,18 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" routerLinkActive="active"
+              <a
+                class="dropdown-item"
+                routerLink="/home-sort-asc"
+                routerLinkActive="active"
                 >A-Z <i class="fas fa-sort-alpha-down"></i
               ></a>
             </li>
             <li>
-              <a class="dropdown-item" routerLinkActive="active"
+              <a
+                class="dropdown-item"
+                routerLink="/home-sort-desc"
+                routerLinkActive="active"
                 >Z-A <i class="fas fa-sort-alpha-up"></i
               ></a>
             </li>
@@ -109,7 +115,7 @@
             <i class="fas fa-sign-out-alt"></i>Log out
           </a>
         </li>
-      </ol>
+      </ul>
       <!-- <form class="d-flex">
         <input
           class="form-control me-2"

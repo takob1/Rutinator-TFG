@@ -31,16 +31,26 @@ export class CrudrutinaService {
   RutinaCollectionAsc!: AngularFirestoreCollection<Rutina>;
   RutinaCollectionDesc!: AngularFirestoreCollection<Rutina>;
 
+  usuario: any;
+
   constructor(
     public afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
     public afs: AngularFirestore,
     public authSvc: AuthService
   ) {
+    this.usuario = authSvc.userData;
+
     this.RutinaCollection = afs.collection<Rutina>('rutinas');
-    this.RutinaCollection$ = afs.collection<Rutina>('rutinas', (ref) =>
-      ref.where('uid', '==', this.getCurrentUserUid())
-    );
+
+    try {
+      this.RutinaCollection$ = afs.collection<Rutina>('rutinas', (ref) =>
+        ref.where('uid', '==', this.getCurrentUserUid())
+      );
+      this.getListaRutinasfiltro();
+    } catch (error) {
+      console.log(error);
+    }
 
     this.RutinaCollectionAsc = afs.collection<Rutina>('rutinas', (ref) =>
       ref.orderBy('name', 'asc')
@@ -50,7 +60,7 @@ export class CrudrutinaService {
     );
 
     this.getListaRutinas();
-    this.getListaRutinasfiltro();
+
     this.sortAsc();
     this.sortDesc();
   }

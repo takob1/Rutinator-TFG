@@ -53,6 +53,7 @@ export class PerfilComponent implements OnInit {
     this.initForm();
     console.log(this.userData);
     this.profileForm.patchValue(this.userData);
+    this.rutinas$ = this.rutinaService.rutinas2$;
   }
 
   onSubmit(): void {
@@ -61,6 +62,10 @@ export class PerfilComponent implements OnInit {
     } else {
       console.log('no valido');
     }
+  }
+
+  reloadCurrentPage() {
+    window.location.reload();
   }
 
   isValidField(field: string): string {

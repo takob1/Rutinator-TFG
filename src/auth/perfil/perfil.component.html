@@ -95,6 +95,12 @@
     </div> -->
   </div>
 </div>
+<button
+  class="align-center btn btn-outline-danger"
+  (click)="reloadCurrentPage()"
+>
+  Cargar mis rutinas
+</button>
 <div class="container mt-5" *ngFor="let item of rutinas$ | async">
   <mat-card class="example-card mat-elevation-z24 container-fluid">
     <mat-card-header class="d-flex align-items-center">

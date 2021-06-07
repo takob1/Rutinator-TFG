@@ -51,7 +51,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-4 ">
-          <h2>To do</h2>
+          <h2>Ejercicios disponibles</h2>
 
           <div cdkDropList #ejercicioList="cdkDropList" [cdkDropListData]="ej" [cdkDropListConnectedTo]="[rutinaList]"
             class="example-list list-ejercicios d-flex d-md-block " (cdkDropListDropped)="onDropped($event)">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-12 col-md-7">
-          <h2>Done</h2>
+          <h2>Ejercicios elegidos</h2>
 
           <div cdkDropList #rutinaList="cdkDropList" [cdkDropListData]="ejercicioRutina"
             [cdkDropListConnectedTo]="[ejercicioList]" class="example-list" (cdkDropListDropped)="onDropped($event)">

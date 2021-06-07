@@ -110,9 +110,14 @@
             </button>
           </form>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authSvc.userData as user">
           <a class="nav-link" (click)="authSvc.SignOut()">
             <i class="fas fa-sign-out-alt"></i>Log out
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!authSvc.userData as user">
+          <a class="nav-link" (click)="authSvc.SignOut()">
+            <i class="fas fa-sign-in-alt"></i>Login
           </a>
         </li>
       </ul>

@@ -52,24 +52,39 @@
   </div>
 </div> -->
 
-<div id="carouselExampleSlidesOnly" class="carousel slide h-100" data-bs-ride="carousel" id="carousel-bg">
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide h-100"
+  data-bs-ride="carousel"
+  id="carousel-bg"
+>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://cdn.pixabay.com/photo/2013/02/05/15/18/landscape-78058_960_720.jpg" class="d-block img-carousel"
-        alt="...">
+      <img
+        src="https://cdn.pixabay.com/photo/2013/02/05/15/18/landscape-78058_960_720.jpg"
+        class="d-block img-carousel"
+        alt="..."
+      />
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.pixabay.com/photo/2018/03/06/03/56/cyclist-3202481_960_720.jpg" class="d-block img-carousel"
-        alt="...">
+      <img
+        src="https://cdn.pixabay.com/photo/2018/03/06/03/56/cyclist-3202481_960_720.jpg"
+        class="d-block img-carousel"
+        alt="..."
+      />
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/18/19/40/woman-1836601_960_720.jpg" class="d-block  img-carousel"
-        alt="...">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/11/18/19/40/woman-1836601_960_720.jpg"
+        class="d-block img-carousel"
+        alt="..."
+      />
     </div>
     <div class="jumbotron vertical-center">
-      <div class="container container-login  overflow-hidden">
+      <div class="container container-login overflow-hidden">
         <div class="row align-items-center">
-          <div class="
+          <div
+            class="
               col col-md-5 col-lg-5 col-xl-6
               bg
               d-none d-lg-block
@@ -77,10 +92,13 @@
               overflow-auto
               pulse
               align-items-center
-
-            ">
-            <img src="https://github.com/takob1/Rutinator-TFG/blob/master/src/assets/logotipoRutinator.PNG?raw=true"
-              alt="imgLogin" class="login-img w-100 overflow-hidden align-self-center" />
+            "
+          >
+            <img
+              src="https://github.com/takob1/Rutinator-TFG/blob/master/src/assets/logotipoRutinator.PNG?raw=true"
+              alt="imgLogin"
+              class="login-img w-100 overflow-hidden align-self-center"
+            />
           </div>
           <div class="col bg-light border-0">
             <h2 class="fw-bold text-center py-5">Bienvenido</h2>
@@ -89,23 +107,43 @@
             <!-- login -->
             <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
               <div class="form-floating mb-4">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                  formControlName="email" required autocomplete="email" />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                  formControlName="email"
+                  required
+                  autocomplete="email"
+                />
                 <label for="floatingInput">Correo Electrónico</label>
               </div>
               <div class="form-floating mb-4">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                  formControlName="password" required autocomplete="current-password" />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                  formControlName="password"
+                  required
+                  autocomplete="current-password"
+                />
                 <label for="floatingPassword">Contraseña</label>
               </div>
               <div class="d-grid">
-                <button class="btn btn-dark" type="submit">Iniciar Sesion</button>
+                <button class="btn btn-dark" type="submit">
+                  Iniciar Sesion
+                </button>
               </div>
               <div class="form-group mt-3 text-center">
-                <p>¿No tiene cuenta? Cree una <a routerLink="/register">aquí</a></p>
+                <p>
+                  ¿No tiene cuenta? Cree una <a routerLink="/register">aquí</a>
+                </p>
               </div>
               <div class="form-group mt-3 text-center">
-                <p><a routerLink="/forgot-password">Olvidó su contraseña?</a></p>
+                <p>
+                  <a routerLink="/forgot-password">Olvidó su contraseña?</a>
+                </p>
               </div>
             </form>
 
@@ -115,7 +153,8 @@
               <div class="row text-center no-gutters">
                 <div class="col">O puede Iniciar sesión con:</div>
               </div>
-              <div class="
+              <div
+                class="
                   row
                   text-center
                   my-3
@@ -123,20 +162,23 @@
                   row-cols-1 row-cols-sm-3 row-cols-md-3
                   d-flex
                   justify-content-center
-                ">
+                "
+              >
                 <!-- <div class="col">
                   <button class="btn" (click)="authSvc.GoogleAuth()">
                     <i class="fab fa-facebook fa-2x"></i>
                   </button>
                 </div> -->
-                <div class="
+                <div
+                  class="
                     text-center
                     my-3
                     align-items-center
                     d-flex
                     justify-content-center
                     pulse
-                  ">
+                  "
+                >
                   <button class="btn btn-danger" (click)="authSvc.GoogleAuth()">
                     <span>Inicie Sesión con Google</span>
                     <br />

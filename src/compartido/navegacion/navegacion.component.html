@@ -50,7 +50,7 @@
                 class="dropdown-item"
                 routerLink="/create-exercise"
                 routerLinkActive="active"
-                >add-ejercicio</a
+                >Añadir ejercicio</a
               >
             </li>
             <li>
@@ -58,7 +58,7 @@
                 class="dropdown-item"
                 routerLink="/list-exercise"
                 routerLinkActive="active"
-                >list-ejercicio</a
+                >Listar ejercicio</a
               >
             </li>
           </ul>
@@ -110,16 +110,6 @@
             </button>
           </form>
         </li>
-        <li class="nav-item" *ngIf="authSvc.userData as user">
-          <a class="nav-link" (click)="authSvc.SignOut()">
-            <i class="fas fa-sign-out-alt"></i>Log out
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="!authSvc.userData as user">
-          <a class="nav-link" (click)="authSvc.SignOut()">
-            <i class="fas fa-sign-in-alt"></i>Login
-          </a>
-        </li>
       </ul>
       <!-- <form class="d-flex">
         <input
@@ -132,29 +122,49 @@
       </form> -->
     </div>
     <div class="float-right">
-      <div *ngIf="authSvc.userData as user">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item btn">
-            <a
-              class="nav-link text-white d-flex align-items-center m-0 p-0"
-              routerLink="/perfil"
-            >
-              <span class="mx-2 nav-link m-0 p-0">
-                {{ user.displayName ? user.displayName : "User" }}
-              </span>
-              <i class="m-0 p-0"
-                ><img
-                  class="rounded-circle mx-auto m-0 p-0 img-profile"
-                  src="{{
-                    user.photoURL ? user.photoURL : '/assets/img_24787.png'
-                  }}"
-                  alt="{{ user.displayName }}"
-                  width="40"
-              /></i>
+      <button class="btn" [matMenuTriggerFor]="menu">
+        <div *ngIf="authSvc.userData as user">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item btn">
+              <a class="nav-link text-white d-flex align-items-center m-0 p-0">
+                <span class="mx-2 nav-link m-0 p-0">
+                  {{ user.displayName ? user.displayName : "User" }}
+                </span>
+                <i class="m-0 p-0"
+                  ><img
+                    class="rounded-circle mx-auto m-0 p-0 img-profile"
+                    src="{{
+                      user.photoURL ? user.photoURL : '/assets/img_24787.png'
+                    }}"
+                    alt="{{ user.displayName }}"
+                    width="40"
+                /></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </button>
+      <mat-menu #menu="matMenu" class="align-c">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/perfil">
+              <i class="fas fa-user"></i> Perfil
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authSvc.userData as user">
+            <a class="nav-link" (click)="authSvc.SignOut()">
+              <i class="fas fa-sign-out-alt"></i> Log out
             </a>
           </li>
         </ul>
-      </div>
+      </mat-menu>
     </div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="!authSvc.userData as user">
+        <a class="nav-link" (click)="authSvc.SignOut()">
+          <i class="fas fa-sign-in-alt"></i>Login
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>

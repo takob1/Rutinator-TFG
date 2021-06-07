@@ -10,7 +10,10 @@
         />
       </div>
       <div class="col-sm p-3">
-        <h1 class="h2">Perfil de Usuarios</h1>
+        <h1>
+          Bienvenido:
+          <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
+        </h1>
         <div class="media-body">
           <form
             class="row g-3"
@@ -72,19 +75,6 @@
               <button type="submit" class="btn btn-danger">Editar</button>
             </div>
           </form>
-          <h1>
-            Bienvenido:
-            <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
-          </h1>
-          <p>
-            User ID: <strong>{{ user.uid }}</strong>
-          </p>
-          <p>
-            Email: <strong>{{ user.email }}</strong>
-          </p>
-          <p>
-            Email Verified: <strong>{{ user.emailVerified }}</strong>
-          </p>
         </div>
       </div>
     </div>
@@ -95,12 +85,16 @@
     </div> -->
   </div>
 </div>
-<button
-  class="align-center btn btn-outline-danger"
-  (click)="reloadCurrentPage()"
->
-  Cargar mis rutinas
-</button>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <button
+    class="align-center btn-lg btn-outline-danger mx-auto"
+    (click)="reloadCurrentPage()"
+  >
+    Cargar mis rutinas
+  </button>
+</div>
+
 <div class="container mt-5" *ngFor="let item of rutinas$ | async">
   <mat-card class="example-card mat-elevation-z24 container-fluid">
     <mat-card-header class="d-flex align-items-center">

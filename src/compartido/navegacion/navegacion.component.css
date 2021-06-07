@@ -1,9 +1,21 @@
-.navbar-rutinator{
-    min-height: 5em;;
+.navbar-rutinator {
+  min-height: 5em;
 }
-.brand-rutinator:hover{
-    color: black
+.brand-rutinator:hover {
+  color: black;
 }
-.active, .dropdown-item:focus{
+.active,
+.dropdown-item:focus {
   background-color: #dc3545;
+}
+
+input[type="search"] {
+  width: 130px;
+  transition: all 0.5s;
+  /* transition: width 0.8s ease-in-out; */
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type="search"]:focus {
+  width: 260px;
 }

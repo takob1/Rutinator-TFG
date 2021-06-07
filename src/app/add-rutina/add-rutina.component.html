@@ -50,7 +50,7 @@
     <ng-template matStepLabel>Ejercicios de la rutina</ng-template>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 col-md-4 ">
+        <div class="col-12 col-md-4 col-ejercicios">
           <h2>Ejercicios disponibles</h2>
 
           <div cdkDropList #ejercicioList="cdkDropList" [cdkDropListData]="ej" [cdkDropListConnectedTo]="[rutinaList]"
@@ -102,7 +102,7 @@
 
         <!-- FIN DE COLUMNA 2 -->
         <div class="col-1">
-          <button mat-button matStepperNext class="btn btn-primary mt-5 btn-step">
+          <button mat-button matStepperNext class="btn btn-primary mt-5 btn-step" style="background-color: #3f51b5;">
             Next
           </button>
         </div>

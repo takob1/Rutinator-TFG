@@ -110,3 +110,7 @@ de este modo poderr controlar las diferentes posibilidadesde los suaruaris al po
 .btn-step {
   position: fixed;
 }
+.col-ejercicios{
+  height: 86.4vh;
+  overflow-x: auto;
+}

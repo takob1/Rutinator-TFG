@@ -182,6 +182,7 @@ export class AuthService {
         },
       },
     };
+    localStorage.setItem('user', JSON.stringify(this.user));
     return userRef.set(data, {
       merge: true,
     });

@@ -6,15 +6,8 @@
       <ng-template matStepLabel>Datos de la Rutina</ng-template>
       <div class="mb-3">
         <label for="name" class="form-label">Nombre de la Rutina</label>
-        <input
-          type="text"
-          formControlName="name"
-          class="form-control"
-          id="name"
-          placeholder="Rutina quemagrasa"
-          required
-          [class]="isValidField('name')"
-        />
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Rutina quemagrasa"
+          required [class]="isValidField('name')" />
         <div class="invalid-feedback">
           <span *ngIf="firstFormGroup.get('name')?.errors?.required">
             El campo no puede estar vacio
@@ -25,198 +18,95 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="description" class="form-label"
-          >Descripción de la Rutina</label
-        >
-        <textarea
-          class="form-control"
-          id="description"
-          rows="3"
-          formControlName="description"
-          [class]="isValidField('description')"
-        ></textarea>
+        <label for="description" class="form-label">Descripción de la Rutina</label>
+        <textarea class="form-control" id="description" rows="3" formControlName="description"
+          [class]="isValidField('description')"></textarea>
       </div>
       <div>
-        <label class="form-label" for="image"
-          >Tiempo de Duración estimada</label
-        >
+        <label class="form-label" for="image">Tiempo de Duración estimada</label>
       </div>
       <div class="input-group mb-3">
         <br />
-        <input
-          type="Number"
-          class="form-control"
-          id="tiempo"
-          min="0"
-          formControlName="time"
-          [class]="isValidField('time')"
-        />
-        <label class="input-group-text bg-primary text-light" for="tiempo"
-          >Tiempo</label
-        >
+        <input type="Number" class="form-control" id="tiempo" min="0" formControlName="time"
+          [class]="isValidField('time')" />
+        <label class="input-group-text bg-primary text-light" for="tiempo">Tiempo</label>
       </div>
 
       <div>
         <label class="form-label" for="image">Dificultad</label>
       </div>
-      <mat-slider
-        thumbLabel
-        formControlName="dificultad"
-        [class]="isValidField('dificultad')"
-        [displayWith]="formatLabel"
-        tickInterval="1"
-        step="1"
-        min="0"
-        max="10"
-        aria-label="units"
-      ></mat-slider>
+      <mat-slider thumbLabel formControlName="dificultad" [class]="isValidField('dificultad')"
+        [displayWith]="formatLabel" tickInterval="1" step="1" min="0" max="10" aria-label="units"></mat-slider>
 
       <div>
-        <button
-          mat-button
-          matStepperNext
-          class="btn btn-primary mt-5"
-          type="submit"
-          [disabled]="!firstFormGroup.valid"
-        >
+        <button mat-button matStepperNext class="btn btn-primary mt-5" type="submit" [disabled]="!firstFormGroup.valid">
           Next
         </button>
       </div>
     </form>
   </mat-step>
   <mat-step>
+    <!-- control de superficial de los errores posibles de mnuestra app -->
     <ng-template matStepLabel>Ejercicios de la rutina</ng-template>
-    <div class="container example-container" style="width: 30%">
-      <h2>To do</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-4 ">
+          <h2>To do</h2>
 
-      <div
-        cdkDropList
-        #ejercicioList="cdkDropList"
-        [cdkDropListData]="ej"
-        [cdkDropListConnectedTo]="[rutinaList]"
-        class="example-list"
-        (cdkDropListDropped)="onDropped($event)"
-      >
-        <div class="example-box" *ngFor="let item of ej" cdkDrag>
-          <mat-card class="example-card mat-elevation-z24 container-fluid">
-            <mat-card-header class="d-flex align-items-center">
-              <div
-                class=""
-                mat-card-avatar
-                [ngStyle]="{
-                  'background-image': 'url(' + item.image + ')',
-                  'background-size': 'cover'
-                }"
-              ></div>
-              <mat-card-title class="">nombre: {{ item.name }}</mat-card-title>
-            </mat-card-header>
-            <div class="row my-3">
-              <mat-divider></mat-divider>
-            </div>
-            <mat-card-content class="container-fluid">
-              <div class="row">
-                <div class="col-md col-md-2 item-card item-card-img">
-                  <img src="{{ item.image }}" alt="" class="img-exercise" />
-                </div>
-                <div class="col-md-9 col-sm-11 item-card my-auto overflow-auto">
-                  <p>imagen: {{ item.image }}</p>
-                  <p>tiempo: {{ item.time_rep }}</p>
-                  <mat-card-subtitle
-                    >descripcion: {{ item.description }}</mat-card-subtitle
-                  >
-                </div>
-              </div>
-              <div class="row my-3">
-                <mat-divider></mat-divider>
-              </div>
-              <div class="row">
-                <mat-chip-list>
-                  <div class="">
-                    <mat-label class="">Zonas:</mat-label>
-                    <mat-chip
-                      class="bg-danger text-light"
-                      *ngFor="let z of item.work_area | keyvalue"
-                    >
-                      {{ z.value }}
-                    </mat-chip>
+          <div cdkDropList #ejercicioList="cdkDropList" [cdkDropListData]="ej" [cdkDropListConnectedTo]="[rutinaList]"
+            class="example-list list-ejercicios d-flex d-md-block " (cdkDropListDropped)="onDropped($event)">
+            <div class="example-box" *ngFor="let item of ej" cdkDrag>
+              <div class="card profile-card-1">
+                <div class="card-content text-center">
+                  <div class="card profile-card-1">
+                    <img src="{{ item.image }}" alt="" class="background" />
+                    <img src="{{ item.image }}" alt="profile-image" class="profile" />
+                    <div class="card-content blockquote text-center">
+                      <h2 class="">{{ item.name }}</h2>
+                      <h3 class="blockquote-footer text-light">
+                        {{ item.name }}
+                      </h3>
+                    </div>
                   </div>
-                </mat-chip-list>
+                </div>
               </div>
-            </mat-card-content>
-          </mat-card>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-7">
+          <h2>Done</h2>
+
+          <div cdkDropList #rutinaList="cdkDropList" [cdkDropListData]="ejercicioRutina"
+            [cdkDropListConnectedTo]="[ejercicioList]" class="example-list" (cdkDropListDropped)="onDropped($event)">
+            <div class="example-box bg-black w-100" *ngFor="let item of ejercicioRutina" cdkDrag>
+              <div class="card profile-card-1">
+                <div class="card-content  text-center">
+                  <div class="card profile-card-1">
+                    <img src="{{ item.image }}" alt="" class="background" />
+                    <img src="{{ item.image }}" alt="profile-image" class="profile" />
+                    <div class="card-content blockquote text-center">
+                      <h2 class="">{{ item.name }}</h2>
+                      <h3 class="blockquote-footer text-light">
+                        {{ item.name }}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIN DE COLUMNA 2 -->
+        <div class="col-1">
+          <button mat-button matStepperNext class="btn btn-primary mt-5 btn-step">
+            Next
+          </button>
         </div>
       </div>
-    </div>
-
-    <div class="example-container" style="width: 60%">
-      <h2>Done</h2>
-
-      <div
-        cdkDropList
-        #rutinaList="cdkDropList"
-        [cdkDropListData]="ejercicioRutina"
-        [cdkDropListConnectedTo]="[ejercicioList]"
-        class="example-list"
-        (cdkDropListDropped)="onDropped($event)"
-      >
-        <div
-          class="example-box bg-black"
-          *ngFor="let item of ejercicioRutina"
-          cdkDrag
-        >
-          <mat-card class="example-card mat-elevation-z24 container-fluid">
-            <mat-card-header class="d-flex align-items-center">
-              <div
-                class=""
-                mat-card-avatar
-                [ngStyle]="{
-                  'background-image': 'url(' + item.image + ')',
-                  'background-size': 'cover'
-                }"
-              ></div>
-              <mat-card-title class="">nombre: {{ item.name }}</mat-card-title>
-            </mat-card-header>
-            <div class="row my-3">
-              <mat-divider></mat-divider>
-            </div>
-            <mat-card-content class="container-fluid">
-              <div class="row">
-                <div class="col-md col-md-2 item-card item-card-img">
-                  <img src="{{ item.image }}" alt="" class="img-exercise" />
-                </div>
-                <div class="col-md-9 col-sm-11 item-card my-auto overflow-auto">
-                  <p>imagen: {{ item.image }}</p>
-                  <p>tiempo: {{ item.time_rep }}</p>
-                  <mat-card-subtitle
-                    >descripcion: {{ item.description }}</mat-card-subtitle
-                  >
-                </div>
-              </div>
-              <div class="row my-3">
-                <mat-divider></mat-divider>
-              </div>
-              <div class="row">
-                <mat-chip-list>
-                  <div class="">
-                    <mat-label class="">Zonas:</mat-label>
-                    <mat-chip
-                      class="bg-danger text-light"
-                      *ngFor="let z of item.work_area | keyvalue"
-                    >
-                      {{ z.value }}
-                    </mat-chip>
-                  </div>
-                </mat-chip-list>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-    <div>
-      <button mat-button matStepperNext class="btn btn-primary mt-5">
-        Next
-      </button>
     </div>
   </mat-step>
   <mat-step>

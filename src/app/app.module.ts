@@ -34,6 +34,7 @@ import { EditRutinaComponent } from './edit-rutina/edit-rutina.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ListEjercicioSortAscComponent } from './list-ejercicio-sort-asc/list-ejercicio-sort-asc.component';
 import { ListEjercicioSortDescComponent } from './list-ejercicio-sort-desc/list-ejercicio-sort-desc.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -111,9 +112,10 @@ const routes: Routes = [
     MatStepperModule,
     MatSliderModule,
     MatAutocompleteModule,
+    SlickCarouselModule
     // AngularFirestore,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

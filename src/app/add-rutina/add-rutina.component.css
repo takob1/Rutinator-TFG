@@ -1,12 +1,11 @@
-mat-slider {
-  width: 300px;
-}
 .img-exercise {
   width: 100%;
   height: 150px;
   object-fit: cover; /*contain*/
 }
-@media only screen and (max-width: 767px) {
+/* para hacer el diseño mobile first, realizar un break-point de max-width 700 yq eu los ejercicios que se muestran de manera vertical lo hagen de manera horizontal 
+de este modo poderr controlar las diferentes posibilidadesde los suaruaris al poder cceder a la página web*/
+@media only screen and (max-width: 768px) {
   .img-exercise {
     height: 250px;
     width: 70%;
@@ -14,43 +13,38 @@ mat-slider {
   .item-card-img {
     text-align: center;
   }
+  .card {
+    min-width: 152px;
+  }
+  .example-box,
+  .example-card {
+    width: 320px;
+    height: 100%;
+  }
 }
-.example-container {
-  width: 400px;
-  max-width: 100%;
+/* .example-container {
   margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
-}
+} */
 
 .example-list {
   border: solid 1px #ccc;
-  min-height: 60px;
+  min-height: 400px;
   background: white;
   border-radius: 4px;
-  overflow: hidden;
-  display: block;
+  overflow: auto;
 }
-
+.list-ejercicios {
+   min-height: 300px
+}
 .example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
   cursor: move;
-  background: white;
-  font-size: 14px;
+  height: max-content;
 }
 
-.cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.example-card {
+  max-height: 560px;
 }
 
 .cdk-drag-placeholder {
@@ -67,4 +61,52 @@ mat-slider {
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+#Usuario {
+  background: #d0d0ce;
+  background: linear-gradient(to right, #ddcfc5, #ecece4);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.profile-card-1 {
+  overflow: hidden;
+  width: 100%;
+
+  color: #ffffff;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+}
+.profile-card-1 .background {
+  height: 150px;
+  vertical-align: top;
+  opacity: 0.9;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  -webkit-transform: scale(1.8);
+  transform: scale(2.8);
+}
+.profile-card-1 .card-content {
+  z-index: 1;
+}
+.profile-card-1 .profile {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+}
+
+.col-btn {
+  height: 100vh;
+}
+.btn-step {
+  position: fixed;
 }

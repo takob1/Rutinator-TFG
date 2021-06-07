@@ -17,12 +17,46 @@ export class HomeComponent implements OnInit {
 
   rut!: Rutina[];
 
+  slides = [
+    { img: "https://via.placeholder.com/600.png/09f/fff" },
+    { img: "https://via.placeholder.com/600.png/021/fff" },
+    { img: "https://via.placeholder.com/600.png/321/fff" },
+    { img: "https://via.placeholder.com/600.png/422/fff" },
+    { img: "https://via.placeholder.com/600.png/654/fff" }
+  ];
+
+  slideConfig = { "slidesToShow": 4, "slidesToScroll": 4 };
+
+  addSlide() {
+    this.slides.push({ img: "http://placehold.it/350x150/777777" })
+  }
+
+  removeSlide() {
+    this.slides.length = this.slides.length - 1;
+  }
+
+  slickInit() {
+    console.log('slick initialized');
+  }
+
+  breakpoint() {
+    console.log('breakpoint');
+  }
+
+  afterChange() {
+    console.log('afterChange');
+  }
+
+  beforeChange() {
+    console.log('beforeChange');
+  }
+
   constructor(
     public authSvc: AuthService,
     private _builder: FormBuilder,
     private router: Router,
     private rutinaService: CrudrutinaService
-  ) {}
+  ) { }
   @Input()
   searchModel!: string;
 

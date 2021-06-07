@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Ejercicio } from 'src/compartido/ejercicio';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Rutina } from 'src/compartido/rutina';
 
 @Component({
   selector: 'app-add-rutina',
@@ -17,6 +18,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-rutina.component.css'],
 })
 export class AddRutinaComponent implements OnInit {
+  isLinear = true;
+  datos = {
+    name: String,
+    description: String,
+    time: Number,
+    dificultad: String,
+  };
   ejercicios$ = this.crudApi.ejercicios;
   public firstFormGroup!: FormGroup;
   ej!: Ejercicio[];
@@ -77,7 +85,8 @@ export class AddRutinaComponent implements OnInit {
     this.firstFormGroup.reset();
   }
   saveData() {
-    console.log(this.firstFormGroup.value);
+    this.datos = this.firstFormGroup.value;
+    console.log(this.datos);
   }
 
   formatLabel(value: number) {

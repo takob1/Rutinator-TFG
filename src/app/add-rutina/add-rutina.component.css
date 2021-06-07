@@ -36,7 +36,7 @@ de este modo poderr controlar las diferentes posibilidadesde los suaruaris al po
   overflow: auto;
 }
 .list-ejercicios {
-   min-height: 300px
+  min-height: 300px;
 }
 .example-box {
   cursor: move;
@@ -110,7 +110,7 @@ de este modo poderr controlar las diferentes posibilidadesde los suaruaris al po
 .btn-step {
   position: fixed;
 }
-.col-ejercicios{
-  height: 86.4vh;
+.col-ejercicios {
+  height: 86vh;
   overflow-x: auto;
 }

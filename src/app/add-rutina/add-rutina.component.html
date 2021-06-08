@@ -244,8 +244,16 @@
       <button class="btn btn-outline-primary" (click)="submitRutinaData()">
         Finalizar
       </button>
-      <button matStepperPrevious class="btn btn-primary me-3">Back</button>
-      <button (click)="stepper.reset()" class="btn btn-primary">Reset</button>
+      <button
+        matStepperPrevious
+        class="btn btn-primary me-3"
+        (click)="resetBack()"
+      >
+        Back
+      </button>
+      <button (click)="stepper.reset(); resetArrays()" class="btn btn-primary">
+        Reset
+      </button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

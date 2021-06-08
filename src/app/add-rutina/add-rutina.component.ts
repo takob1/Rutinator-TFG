@@ -112,6 +112,14 @@ export class AddRutinaComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  resetArrays() {
+    this.ejercicioRutina = [];
+    this.ejercicioRutina2 = [];
+  }
+
+  resetBack() {
+    this.ejercicioRutina2 = [];
+  }
   onDropped(event: CdkDragDrop<any>) {
     console.log(event.previousContainer);
     if (event.previousContainer === event.container) {

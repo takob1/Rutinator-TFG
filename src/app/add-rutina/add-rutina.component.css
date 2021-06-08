@@ -21,6 +21,11 @@ de este modo poderr controlar las diferentes posibilidadesde los suaruaris al po
     width: 320px;
     height: 100%;
   }
+
+  .col-ejercicios {
+    height: 35vh !important;
+    overflow-x: auto;
+  }
 }
 /* .example-container {
   margin: 0 25px 25px 0;

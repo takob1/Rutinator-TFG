@@ -105,6 +105,7 @@ export class AddRutinaComponent implements OnInit {
     this.toastr.success(
       this.firstFormGroup.controls['name'].value + ' successfully added!'
     );
+    this.router.navigate(['home']);
   }
 
   onDropped(event: CdkDragDrop<any>) {

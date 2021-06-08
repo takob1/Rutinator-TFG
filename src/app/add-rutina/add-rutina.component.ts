@@ -30,6 +30,7 @@ export class AddRutinaComponent implements OnInit {
   ej!: Ejercicio[];
 
   ejercicioRutina: Ejercicio[] = [];
+  ejercicioRutina2: Ejercicio[] = [];
 
   constructor(
     private router: Router,
@@ -88,6 +89,9 @@ export class AddRutinaComponent implements OnInit {
     this.datos = this.firstFormGroup.value;
     console.log(this.datos);
   }
+  guardarDatos() {
+    this.ejercicioRutina2 = this.ejercicioRutina;
+  }
 
   formatLabel(value: number) {
     if (value >= 11) {
@@ -117,6 +121,7 @@ export class AddRutinaComponent implements OnInit {
         event.currentIndex
       );
     } else {
+      console.log(this.ejercicioRutina2);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

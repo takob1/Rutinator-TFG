@@ -163,7 +163,12 @@
         </div>
 
         <div class="col-1">
-          <button mat-button matStepperNext class="btn btn-primary mt-5">
+          <button
+            mat-button
+            matStepperNext
+            class="btn btn-primary mt-5"
+            (click)="guardarDatos()"
+          >
             Next
           </button>
         </div>
@@ -172,7 +177,69 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Resumen</ng-template>
-    <p>You are now done.</p>
+    <p>Ya has terminado, pulsa finalizar para crear la rutina.</p>
+
+    <mat-card class="example-card mat-elevation-z24 container-fluid mb-4">
+      <mat-card-content class="container-fluid">
+        <div class="row">
+          <div class="col-md col-md-2 item-card item-card-img text-center">
+            <p class="h4">{{ this.datos.name }}</p>
+            <mat-card-subtitle
+              >Descripcion: {{ this.datos.description }}</mat-card-subtitle
+            >
+          </div>
+          <div class="col-md-9 col-sm-11 item-card overflow-hidden">
+            <div class="row row-cards">
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel">
+                <div
+                  ngxSlickItem
+                  class="col-md-3 slide"
+                  *ngFor="let z of ejercicioRutina2 as Ejercicio"
+                >
+                  <div class="card profile-card-1">
+                    <div class="card-content blockquote text-center">
+                      <div class="card profile-card-1">
+                        <img src="{{ z.image }}" alt="" class="background" />
+                        <img
+                          src="{{ z.image }}"
+                          alt="profile-image"
+                          class="profile"
+                        />
+                        <div class="card-content blockquote text-center">
+                          <h2 class="">{{ z.name }}</h2>
+                          <h3 class="blockquote-footer text-light">
+                            {{ z.name }}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+            </div>
+          </div>
+        </div>
+        <div class="row my-3">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="row">
+          <mat-chip-list>
+            <div class="">
+              <mat-label class="">Dificultad:</mat-label>
+              <mat-chip class="bg-danger text-light me-2">{{
+                this.datos.dificultad
+              }}</mat-chip>
+
+              <mat-label class="">Duración:</mat-label>
+              <mat-chip class="bg-danger text-light me-2">{{
+                this.datos.time
+              }}</mat-chip>
+            </div>
+          </mat-chip-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <div class="d-flex gap-5"></div>
     <div>
       <button class="btn btn-outline-primary" (click)="submitRutinaData()">
         Finalizar

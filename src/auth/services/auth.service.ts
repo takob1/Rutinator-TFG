@@ -64,7 +64,7 @@ export class AuthService {
         this.SetUserData(result.user, fName);
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.toastr.error('Datos incorrectos');
       });
   }
 
@@ -78,7 +78,7 @@ export class AuthService {
         this.UpdateUserData(result.user);
       })
       .catch((error) => {
-        //window.alert(error.message);
+        this.toastr.error('El usuario o la contraseña son incorrectos');
       });
   }
 
@@ -127,7 +127,7 @@ export class AuthService {
         });
         // this.SetUserData(result.user);
         this.UpdateUserData(result.user);
-        console.log(result.user)
+        console.log(result.user);
       })
       .catch((error) => {
         //window.alert(error);
@@ -146,11 +146,11 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       fName: fName,
-      lName: "user.lastName"
+      lName: 'user.lastName',
     };
     console.log(userData);
     return userRef.set(userData, {
-      merge: true
+      merge: true,
     });
   }
 
@@ -165,9 +165,8 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      fName: "",
-      lName: ""
-
+      fName: '',
+      lName: '',
     };
     const extra = {
       tag: 'braylout',

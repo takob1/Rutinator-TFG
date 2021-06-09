@@ -51,7 +51,7 @@
           formControlName="time"
           [class]="isValidField('time')"
         />
-        <label class="input-group-text bg-primary text-light" for="tiempo"
+        <label class="input-group-text btn-color text-light" for="tiempo"
           >Tiempo</label
         >
       </div>
@@ -75,7 +75,7 @@
         <button
           mat-button
           matStepperNext
-          class="btn btn-primary mt-5"
+          class="btn mt-5 btn-color"
           type="submit"
           [disabled]="!firstFormGroup.valid"
         >
@@ -166,7 +166,7 @@
           <button
             mat-button
             matStepperNext
-            class="btn btn-primary mt-5"
+            class="btn mt-5 btn-color"
             (click)="guardarDatos()"
           >
             Next

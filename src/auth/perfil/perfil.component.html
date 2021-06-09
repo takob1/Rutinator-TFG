@@ -20,8 +20,10 @@
             (ngSubmit)="onSubmit()"
             [formGroup]="profileForm"
           >
-            <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Nombre</label>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label"
+                >Nombre de usuario</label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -37,17 +39,33 @@
               </div>
             </div>
             <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="Nombre"
+                formControlName="fName"
+                [class]="isValidField('fName')"
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="profileForm.get('fName')?.errors?.required">
+                  El campo non puede estar vacio
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Apellido</label>
               <input
                 type="text"
                 class="form-control"
                 id="inputPassword4"
                 placeholder="Apellido"
-                formControlName="lastName"
-                [class]="isValidField('lastName')"
+                formControlName="lName"
+                [class]="isValidField('lName')"
               />
               <div class="invalid-feedback">
-                <span *ngIf="profileForm.get('lastName')?.errors?.required">
+                <span *ngIf="profileForm.get('lName')?.errors?.required">
                   El campo non puede estar vacio
                 </span>
               </div>

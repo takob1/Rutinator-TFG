@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -10,13 +15,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  private isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  private isEmail =
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   /*registerForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });*/
 
-  constructor(private authSvc: AuthService, private _builder: FormBuilder,) { }
+  constructor(private authSvc: AuthService, private _builder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -27,8 +33,8 @@ export class RegisterComponent implements OnInit {
     return !validatedFiel?.valid && validatedFiel?.touched
       ? 'is-invalid'
       : validatedFiel?.touched
-        ? 'is-valid'
-        : '';
+      ? 'is-valid'
+      : '';
   }
 
   private initForm(): void {
@@ -45,10 +51,14 @@ export class RegisterComponent implements OnInit {
     //const { email, password } = this.registerForm.value;
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      this.authSvc.register(this.registerForm.controls['email'].value, this.registerForm.controls['password'].value, this.registerForm.controls['fName'].value);
+      this.authSvc.register(
+        this.registerForm.controls['email'].value,
+        this.registerForm.controls['password'].value,
+        this.registerForm.controls['fName'].value,
+        this.registerForm.controls['lName'].value
+      );
     } else {
       console.log('no valido');
     }
-
   }
 }

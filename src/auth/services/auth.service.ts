@@ -1,10 +1,11 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../services/user';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first, switchMap } from 'rxjs/operators';
+import { first, map, switchMap } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import {
   AngularFirestore,
+  AngularFirestoreCollection,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -20,8 +21,9 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
   public resetForm!: FormGroup;
   userData: any;
-
+  usercollection!: AngularFirestoreDocument<User>;
   user!: Observable<User | any>;
+  items2!: Observable<any>;
 
   constructor(
     public afs: AngularFirestore,
@@ -45,8 +47,19 @@ export class AuthService {
     );*/
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        console.log('eeeeeee');
+        this.items2 = afs.collection('users').doc(user.uid).valueChanges();
+        this.items2.subscribe((user2) => {
+          if (user2) {
+            console.log('user2');
+            console.log(user2);
+            this.userData = user2;
+            localStorage.setItem('user', JSON.stringify(this.userData));
+          } else {
+            console.log('NOPE');
+          }
+        });
+
         //JSON.parse(localStorage.getItem('user') ?? '');
       } else {
         localStorage.setItem('user', '');
@@ -55,13 +68,13 @@ export class AuthService {
     });
   }
 
-  register(email: string, password: string, fName: string) {
+  register(email: string, password: string, fName: string, lName: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationMail();
         //console.log(result)
-        this.SetUserData(result.user, fName);
+        this.SetUserData(result.user, fName, lName);
       })
       .catch((error) => {
         this.toastr.error('Datos incorrectos');
@@ -75,7 +88,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['home']);
         });
-        this.UpdateUserData(result.user);
+        // this.SetUserData(result.user);
       })
       .catch((error) => {
         this.toastr.error('El usuario o la contraseña son incorrectos');
@@ -134,7 +147,7 @@ export class AuthService {
       });
   }
 
-  SetUserData(user: User | any, fName: string) {
+  SetUserData(user: User | any, fName: string, lName: string) {
     //console.log(user);
     const userRef: AngularFirestoreDocument<User | any> = this.afs.doc(
       `users/${user.uid}`
@@ -146,9 +159,10 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       fName: fName,
-      lName: 'user.lastName',
+      lName: lName,
     };
     console.log(userData);
+    this.getDataUser(user.uid);
     return userRef.set(userData, {
       merge: true,
     });
@@ -159,29 +173,16 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
-    const data: User = {
+    const data = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      fName: '',
-      lName: '',
     };
-    const extra = {
-      tag: 'braylout',
-      rutinas: {
-        rutina1: {
-          ejercicio1: 1,
-          ejercicio2: 2,
-        },
-        rutina2: {
-          ejercicio1: 1,
-          ejercicio2: 2,
-        },
-      },
-    };
+
     localStorage.setItem('user', JSON.stringify(this.user));
+    this.getDataUser(user.uid);
     return userRef.set(data, {
       merge: true,
     });
@@ -196,5 +197,13 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
+  }
+  getDataUser(documentId: string) {
+    const usuario = this.afs
+      .collection('users')
+      .doc(documentId)
+      .snapshotChanges();
+    console.log(usuario);
+    localStorage.setItem('user', JSON.stringify(usuario));
   }
 }

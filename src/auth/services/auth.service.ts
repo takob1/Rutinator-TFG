@@ -49,16 +49,16 @@ export class AuthService {
       if (user) {
         console.log('eeeeeee');
         this.items2 = afs.collection('users').doc(user.uid).valueChanges();
-        this.items2.subscribe((user2) => {
-          if (user2) {
-            console.log('user2');
-            console.log(user2);
-            this.userData = user2;
-            localStorage.setItem('user', JSON.stringify(this.userData));
-          } else {
-            console.log('NOPE');
-          }
-        });
+        // this.items2.subscribe((user2) => {
+        //   if (user2) {
+        //     console.log('user2');
+        //     console.log(user2);
+        //   } else {
+        //     console.log('NOPE');
+        //   }
+        // });
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
 
         //JSON.parse(localStorage.getItem('user') ?? '');
       } else {
@@ -77,7 +77,7 @@ export class AuthService {
         this.SetUserData(result.user, fName, lName);
       })
       .catch((error) => {
-        this.toastr.error('Datos incorrectos');
+        //this.toastr.error('Datos incorrectos');
       });
   }
 

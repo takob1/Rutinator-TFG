@@ -21,7 +21,7 @@ import { flatMap, map } from 'rxjs/operators';
 })
 export class PerfilComponent implements OnInit {
   rutinas$ = this.rutinaService.rutinas2$;
-
+  items2!: Observable<any>;
   navigationExtras?: NavigationExtras = {
     state: {
       value: null,
@@ -47,6 +47,18 @@ export class PerfilComponent implements OnInit {
     const navigation = this.router.getCurrentNavigation();
     this.value = navigation?.extras?.state;
     this.userData = JSON.parse(localStorage.getItem('user')!);
+
+    this.items2 = afs.collection('users').doc(this.userData.uid).valueChanges();
+    this.items2.subscribe((user2) => {
+      if (user2) {
+        console.log('user2');
+        console.log(user2);
+      } else {
+        this.userData = user2;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        console.log('NOPE');
+      }
+    });
   }
 
   ngOnInit(): void {

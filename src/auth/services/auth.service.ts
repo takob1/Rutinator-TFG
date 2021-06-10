@@ -47,7 +47,7 @@ export class AuthService {
     );*/
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        console.log('eeeeeee');
+
         this.items2 = afs.collection('users').doc(user.uid).valueChanges();
         // this.items2.subscribe((user2) => {
         //   if (user2) {
@@ -88,7 +88,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['home']);
         });
-        // this.SetUserData(result.user);
+        this.UpdateUserData(result.user);
       })
       .catch((error) => {
         this.toastr.error('El usuario o la contraseña son incorrectos');
@@ -162,7 +162,7 @@ export class AuthService {
       lName: lName,
     };
     console.log(userData);
-    this.getDataUser(user.uid);
+    // this.getDataUser(user.uid);
     return userRef.set(userData, {
       merge: true,
     });

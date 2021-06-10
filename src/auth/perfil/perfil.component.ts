@@ -47,24 +47,19 @@ export class PerfilComponent implements OnInit {
     const navigation = this.router.getCurrentNavigation();
     this.value = navigation?.extras?.state;
     this.userData = JSON.parse(localStorage.getItem('user')!);
-
-    this.items2 = afs.collection('users').doc(this.userData.uid).valueChanges();
-    this.items2.subscribe((user2) => {
-      if (user2) {
-        console.log('user2');
-        console.log(user2);
-      } else {
-        this.userData = user2;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        console.log('NOPE');
-      }
-    });
+    console.log("dmMOnye");
+    console.log(this.userData);
+    this.rutinas$ = this.rutinaService.rutinas2$;
   }
 
   ngOnInit(): void {
     this.initForm();
+    console.log("em el init form");
     console.log(this.userData);
-    this.profileForm.patchValue(this.userData);
+    // this.userData = ;
+    this.getUser()
+    console.log(this.userData);
+
     this.rutinas$ = this.rutinaService.rutinas2$;
   }
 
@@ -85,8 +80,8 @@ export class PerfilComponent implements OnInit {
     return !validatedFiel?.valid && validatedFiel?.touched
       ? 'is-invalid'
       : validatedFiel?.touched
-      ? 'is-valid'
-      : '';
+        ? 'is-valid'
+        : '';
   }
 
   private initForm(): void {
@@ -113,5 +108,17 @@ export class PerfilComponent implements OnInit {
     } catch (err) {
       console.log(err);
     }
+  }
+  getUser(): void {
+    this.items2 = this.afs.collection('users').doc(this.userData.uid).valueChanges();
+    this.items2.subscribe((user2) => {
+      if (user2) {
+        this.userData = user2;
+        this.profileForm.patchValue(this.userData);
+      } else {
+        //return "fuck";
+        console.log('NOPE');
+      }
+    });
   }
 }

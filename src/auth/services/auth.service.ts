@@ -195,7 +195,7 @@ export class AuthService {
   async SignOut() {
     await this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['login']);
+      window.location.href = '/login';
     });
   }
   getDataUser(documentId: string) {

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(''),
   });*/
 
-  constructor(private authSvc: AuthService, private _builder: FormBuilder) {}
+  constructor(private authSvc: AuthService, private _builder: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit {
     return !validatedFiel?.valid && validatedFiel?.touched
       ? 'is-invalid'
       : validatedFiel?.touched
-      ? 'is-valid'
-      : '';
+        ? 'is-valid'
+        : '';
   }
 
   private initForm(): void {
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       lName: ['', [Validators.required]],
       fName: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern(this.isEmail)]],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
